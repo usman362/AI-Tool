@@ -104,6 +104,7 @@ class SoundsController extends Controller
 		$category->is_insta = $insta;
 		$category->is_twitter = $twitter;
 		$category->cnt = $cnt;
+        $category->status = 1;
 		
 		$category->save();
 		return redirect('/sounds')->with('success','Intros successfully created.');

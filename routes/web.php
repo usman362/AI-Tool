@@ -263,6 +263,14 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
     Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('/', [AnalyticsController::class, 'index'])->name('adminpanel');
+    Route::delete('/', [AnalyticsController::class, 'index'])->name('adminpanel');
+
+    Route::get('/download-video', [AnalyticsController::class, 'download'])->name('video.download');
+    Route::get('/download-photo', [AnalyticsController::class, 'download_photo'])->name('photo.download');
+
+    Route::get('/genratvideo', [AnalyticsController::class, 'index'])->name('adminpanel');
+
+    
     // analystics
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('dashboard-analytics');
 	
@@ -528,6 +536,7 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
 			Route::get('/categories/create', [CategoryController::class, 'create'])->name('series.categories.create');
 			Route::get('/categories/{id}', [CategoryController::class, 'delcat']);//->name('series.categories.create');
 			Route::post('/categories/create', [CategoryController::class, 'store'])->name('series.categories.store');
+            Route::put('/categories/update/{category}', [CategoryController::class, 'update'])->name('categories.update');
         });
 
     Route::get('/series/{id}/series', [UploadMovieController::class, 'deleteMovie'])->name('series.delete-video');

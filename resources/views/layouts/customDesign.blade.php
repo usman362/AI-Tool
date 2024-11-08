@@ -84,6 +84,20 @@
 	.heading_post{
 		font-weight:bold;
 	}
+	.post_img{
+		position:relative;
+		cursor:pointer;
+	}
+	.overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 40px; /* Adjust the height of the overlay */
+		background: rgba(0, 0, 0, 0.4); /* Transparent black */
+		margin-bottom: 5px;
+		box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.7);
+	}
 	.post_img img{
 		width:100%;
 		border-radius:5px;
@@ -221,9 +235,44 @@
     }
     .play-btn{
         float:left;
+		padding-left: 5px;
+  		margin-left: 10px;
+		color: #fff;
+		background: #050607;
+		text-align: center;
+		font-size: 20px;
+		border-radius: 50%;
+		height: 35px;
+  		width: 35px;
+		  background: rgba(0, 0, 0, 0.7);
+		  z-index:1;
+		  position:relative;
+		  cursor:pointer;
     }
+	.play-btn .menu-icon{
+		font-size:30px;
+		font-weight: bold;
+	}
+	.delbtn{
+		cursor: pointer;
+  z-index: 1;
+  position: relative;
+	}
+	.bot-div{
+		position: absolute;
+  bottom: 15px;
+  color: #fff;
+  width: 100%;
+  
+	}
     .play-time{
         float:right;
+		color: #fff;
+		margin-right: 10px;
+		margin-top: 15px;
+		font-size: 11px;
+		z-index: 1;
+  		position: relative;
     }
 	.selection-box{
 		padding:15px !important;
@@ -377,5 +426,94 @@
 	display:none;
 }
 
+
+.m-t-10{
+		margin-top:10px;
+	}
+	.card{
+		padding:20px;
+	}
+	.details{
+		background: #F5F5F5;
+	  	padding: 5px;
+	  	border-radius: 10px;
+	  	padding-bottom: 10px;
+	  	margin-top: 10px;
+		margin-bottom:10px;
+	}
+	.bordered{
+		background: #fff;
+		  padding: 8px;
+		  border-radius: 10px;
+		  margin-top:5px;
+	}
+	.details b{
+		color:#1c274c !important;
+	}
+	.bordered input{
+		float: right;
+  		margin-top: 5px;
+	}
+	.form-check-input{
+		float:right !important;
+	}
+	.form-switch{
+		padding-left:0px !important;
+	}
+	.righ-check-option{
+		float:right;
+		width:100px;
+	}
+	
+	.source_list{
+		width:calc(100% - 50px);
+		float:left;
+		margin-bottom:10px;
+	}
+	.sources{
+		
+	}
+	.source_btn{
+		width:40px;
+		margin-left: 10px;
+  		margin-top: 5px;
+		background:#DDDDDD;
+	}
+	#avatar_image{
+		height:120px;
+		border-radius:50%;
+		width:120px;
+		cursor:pointer;
+	}
+	#uploadimage{
+		display:none;
+	}
+	.removebtn{
+		position: absolute;
+		  margin-top: 15px;
+		  margin-right: 10px;
+		  margin-left: -30px;
+		  height: 30px;
+		  width: 30px;
+		  max-width: 30px;
+		  padding: 5px;
+		  display:none;
+	}
+
+.modal-content {
+    position: relative;
+    max-height: 80%; /* Optional: limits the height of the video */
+}
+
+/* Video styling */
+video {
+    width: 100%; /* Full width of its container */
+    height: 100vh; /* Full screen height */
+    object-fit: contain; /* Ensures the video maintains its aspect ratio */
+}
+.download_img, .btn-sm{
+	z-index:1;
+	position:relative;
+}
 
 </style>

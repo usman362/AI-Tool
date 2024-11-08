@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'YekBûn SocialMedia Kurdî')
+@section('title', 'Manage Intros')
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-icons.css') }}" />
@@ -45,6 +45,78 @@
 	.ava-link{
 		color:unset;
 	}
+    .m-t-10{
+		margin-top:10px;
+	}
+	.card{
+		padding:20px;
+	}
+	.details{
+		background: #F5F5F5;
+	  	padding: 5px;
+	  	border-radius: 10px;
+	  	padding-bottom: 10px;
+	  	margin-top: 10px;
+		margin-bottom:10px;
+	}
+	.bordered{
+		background: #fff;
+		  padding: 8px;
+		  border-radius: 10px;
+		  margin-top:5px;
+	}
+	.details b{
+		color:#1c274c !important;
+	}
+	.bordered input{
+		float: right;
+  		margin-top: 5px;
+	}
+	.form-check-input{
+		float:right !important;
+	}
+	.form-switch{
+		padding-left:0px !important;
+	}
+	.righ-check-option{
+		float:right;
+		width:100px;
+	}
+	
+	.source_list{
+		width:calc(100% - 50px);
+		float:left;
+		margin-bottom:10px;
+	}
+	.sources{
+		
+	}
+	.source_btn{
+		width:40px;
+		margin-left: 10px;
+  		margin-top: 5px;
+		background:#DDDDDD;
+	}
+	#avatar_image{
+		height:120px;
+		border-radius:50%;
+		width:120px;
+		cursor:pointer;
+	}
+	#uploadimage{
+		display:none;
+	}
+	.removebtn{
+		position: absolute;
+		  margin-top: 15px;
+		  margin-right: 10px;
+		  margin-left: -30px;
+		  height: 30px;
+		  width: 30px;
+		  max-width: 30px;
+		  padding: 5px;
+		  display:none;
+	}
 
 </style>
 
@@ -67,8 +139,8 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="m-0"></h5>
-                <a class="btn btn-primary" href="{{url('/intros/create')}}"><i class="bx bx-plus me-0 me-sm-1"></i> Add Intro</a>
-            </div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal"><i class="bx bx-plus me-0 me-sm-1"></i> Add Category</button>
+     </div>
 
     <div class="table-responsive text-nowrap">
       @if(count($categories) > 0)
@@ -176,8 +248,37 @@
                         @endif
                     </td>
                     <td>
-                    	<a class="btn" href="intros/{{$av->id}}/edit" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" data-bs-original-title="Edit"><i class="bx bx-edit"></i></a>
+                    	
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#editModal{{ $av->_id }}"><i class="bx bx-edit"></i></button>
 
+
+                      <div class="modal fade x-modal" id="editModal{{ $av->_id }}" tabindex="-1"
+                                    aria-labelledby="editModal{{ $av->_id }}Label" aria-hidden="true"
+                                    data-bs-backdrop="static" data-bs-keyboard="false">
+                                    <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-custom-grey pb-2">
+                                                <div class="d-flex w-100">
+                                                    <div
+                                                        class="d-flex justify-content-center align-items-center p-2 gap-1 bg-white rounded-2 mx-auto">
+                                                        
+                                                        <h5 class="modal-title fs-3"
+                                                            id="editModal{{ $av->_id }}Label">Edit Intros</h5>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @include('content.intros.includes.edit_form')
+                                            </div>
+                                            <div class="modal-footer p-0 d-flex justify-content-center pb-2">
+                                                <button type="submit" class="btn btn-info fs-3"
+                                                    form="editForm{{ $av->_id }}">Update </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                          <form action="intros/{{$av->id}}"  onsubmit="confirmAction(event, () => event.target.submit())" method="post"  class="d-inline">
@@ -216,6 +317,18 @@
   </div>
   <!--/ Basic Bootstrap Table -->
 
+
+  <x-modal
+    id="createModal"
+    title="Add Intros"
+    saveBtnText="Create"
+    saveBtnType="submit"
+    saveBtnForm="createForm"
+    size="md"
+    :show="old('showCreateFormModal')? true: false"
+  >
+    @include('content.intros.includes.create_form')
+  </x-modal>
 
             <!-- pricingModal -->
                         <!--/ pricingModal -->

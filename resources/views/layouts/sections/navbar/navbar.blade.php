@@ -4,6 +4,21 @@ $navbarDetached = ($navbarDetached ?? '');
 
 @endphp
 
+
+<style>
+    .f-left{
+        float:left;
+    }
+    .avatar img{
+        margin-right:5px;
+    }
+    .p-10{
+        padding:5px;
+    }
+    .admin_name{
+        font-weight:bold;
+    }
+</style>
 <!-- Navbar -->
 @if(isset($navbarDetached) && $navbarDetached == 'navbar-detached')
 <nav class="layout-navbar {{$containerNav}} navbar navbar-expand-xl {{$navbarDetached}} align-items-center bg-navbar-theme"
@@ -34,6 +49,9 @@ $navbarDetached = ($navbarDetached ?? '');
                 <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                     <i class="bx bx-menu bx-sm"></i>
                 </a>
+
+
+                
             </div>
             @endif
 
@@ -53,11 +71,11 @@ $navbarDetached = ($navbarDetached ?? '');
                 </div>
                 <!-- /Search -->
                 <div class="col-3 mb-0 text-center">
-                    <button class="btn btn-primary generate_video">Generate - Video</button>
+                    <a href="{{ url('/genratvideo')}}" class="btn btn-primary generate_video1">Generate - Video</a>
                 </div>
                 @endif
-                <div class="col-2 card mb-0 d-flex justify-content-between align-items-center">
-                    <ul class="navbar-nav flex-row align-items-center justify-content-around" style="width: 100%;">
+                <div class="col-2 card mb-0 d-flex justify-content-between align-items-center" style="padding:0px; ">
+                    <ul class="navbar-nav flex-row align-items-center justify-content-around1 p-10" style="width: 100%;">
                         
 
 
@@ -67,19 +85,33 @@ $navbarDetached = ($navbarDetached ?? '');
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                data-bs-toggle="dropdown">
-                                <div class="avatar avatar-online">Admin
-                                    <img src="{{ Auth::user() && Auth::user()->image && Auth::user()->image != "NULL" ? asset('storage/'.Auth::user()->image) : asset('https://www.w3schools.com/howto/img_avatar.png') }}"
-                                        alt class="w-px-40 h-px-40 rounded-circle">
+                            
+
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                <div class="avatar avatar-online">
+                                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" class="w-px-40 h-px-40 f-left rounded-circle">
+                                    @if (Auth::check())
+                                        <div class="admin_name">
+                                        {{ Auth::user()->name }}
+
+                                        </div>
+
+                                        <div class="admin_emao;">
+                                        {{ Auth::user()->email }}
+
+                                        </div>
+
+                                    @endif
                                 </div>
                             </a>
+
+
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin_profile') }}">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
-                                                <div class="avatar avatar-online">
+                                                <div class="avatar avatar-online1">
                                                     <img src="{{ Auth::user() && Auth::user()->image ? asset('storage/'.Auth::user()->image) : asset('https://www.w3schools.com/howto/img_avatar.png') }}"
                                                         alt class="w-px-40 h-px-40 rounded-circle">
                                                 </div>
@@ -108,12 +140,7 @@ $navbarDetached = ($navbarDetached ?? '');
                                         <span class="align-middle">My Profile </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('admin_activity') }}">
-                                        <i class="bx bx-user me-2"></i>
-                                        <span class="align-middle">Admin Activity</span>
-                                    </a>
-                                </li>
+                               
                                 @endcan
                                 @if (Auth::check() && false && Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <li>

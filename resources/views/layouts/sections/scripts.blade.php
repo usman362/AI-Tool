@@ -33,14 +33,97 @@
 @yield('page-script')
 {{-- <script src="{{asset('assets/js/tables-datatables-basic.js')}}"></script> --}}
 <!-- END: Page JS-->
+
+
 @stack('scripts')
 
 <script>
 $( document ).ready(function() {
-	$(document).on("click", ".generate_video", function(){
+
+	var filename = "av_video.mp4";
+	
+        $(".download_vid").click(function(){
+          
+        // Make an AJAX request to the download route
+        $.ajax({
+            url: '{{ route("video.download") }}?v=1.0',
+            method: 'GET',
+            xhrFields: {
+                responseType: 'blob' // Important for downloading files
+            },
+            success: function(response) {
+                // Create a download link for the file
+                var link = document.createElement('a');
+                var blob = response;
+                var url = window.URL.createObjectURL(blob);
+
+                // Set up the download attributes
+                link.href = url;
+                link.download = filename; // You can also set a custom filename here
+                link.click();
+
+                // Optionally, show a success message
+                $('#status').html('Download started.');
+            },
+            error: function(xhr) {
+                // Handle error (e.g., file not found)
+                $('#status').html('Error: ' + xhr.responseJSON.message);
+            }
+        });
+	});
+
+
+		$(".download_img").click(function(){
+          
+			var photo = "Feed Photo.png";
+		  // Make an AJAX request to the download route
+		  $.ajax({
+			  url: '{{ route("photo.download") }}?v=1.0',
+			  method: 'GET',
+			  xhrFields: {
+				  responseType: 'blob' // Important for downloading files
+			  },
+			  success: function(response) {
+				  // Create a download link for the file
+				  var link = document.createElement('a');
+				  var blob = response;
+				  var url = window.URL.createObjectURL(blob);
+  
+				  // Set up the download attributes
+				  link.href = url;
+				  link.download = photo; // You can also set a custom filename here
+				  link.click();
+  
+				  // Optionally, show a success message
+				  $('#status').html('Download started.');
+			  },
+			  error: function(xhr) {
+				  // Handle error (e.g., file not found)
+				  $('#status').html('Error: ' + xhr.responseJSON.message);
+			  }
+		  });
+
+
+
+        })
+     
+	
+	@if(isset($generatvideo) && $generatvideo == 1){
 		$(".sections").hide();
 		$(".selection_section").show();
-	});
+	}
+	@endif
+
+	@if(isset($generatvideo) && $generatvideo == 0){
+		$(".list_video_section").show();
+		$(".selection_section").hide();
+	}
+	@endif
+
+	//$(document).on("click", ".generate_video", function(){
+	//	$(".sections").hide();
+	//	$(".selection_section").show();
+	//});
 	
 	$(".gene_f_link").click(function(){
 		$(".selection_section").hide();

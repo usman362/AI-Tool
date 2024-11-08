@@ -1,17 +1,23 @@
-@php
-$configData = Helper::appClasses();
-@endphp
+
 
 @extends('layouts/layoutMaster')
 
 @section('title', 'Dashboard - Analytics')
 
+
+
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css " rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
 @endsection
+
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 @endsection
 
 @section('page-script')
@@ -29,6 +35,16 @@ $configData = Helper::appClasses();
   .main_section{
     display:none;
   }
+
+
+  .sections{
+    display:none;
+  }
+  .selection_section{
+    display:none;
+  }
+
+
   </style>
 
 <div class="row list_video_section sections">
@@ -46,6 +62,8 @@ $configData = Helper::appClasses();
 <div class=" list_video_section sections">
 <div class="row ">
 
+ 
+
 @php
 for($i=0; $i<3; $i++){
 @endphp
@@ -61,22 +79,34 @@ for($i=0; $i<3; $i++){
       <div class="heading_post av_name">Bave Teyar</div>
       <div class="details_post av_task">Funny news</div>
     </div>
-    <div class="post_time">
-      <form action="https://admin.yekbun.net/manage-avatars/6707517b65fd931012081478" onsubmit="confirmAction(event, () => event.target.submit())" method="post" class="d-inline">
+    <div class="post_time delbtn">
+
+    <button type="button" class="btn btn-sm btn-icon download_vid">
+          <i class="bx bx-download me-1"></i>
+        </button>
+
+      <form action="{{ url('/')}}" onsubmit="confirmAction(event, () => event.target.submit())" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="PjKOc0Svq7WPY0Hh2D0yvO71yq38LmNkZ36qK0rx">
+        @csrf
+       
+       
         <button type="submit" class="btn btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" data-bs-original-title="Remove">
           <i class="bx bx-trash me-1"></i>
         </button>
       </form>
     </div>
-    <div class="post_img">
+    <div class="post_img" data-bs-toggle="modal" data-bs-target="#createModal1">
       <img src="https://cdnph.upi.com/svc/sv/i/7261728058834/2024/1/17280596862788/Movie-review-Terrifier-3-increases-shocks-with-surprising-restraint.jpg">
-    </div>
-
-    <div class="play-bar">
+        
+      <div class="bot-div">
         <span class="play-btn"><i class="menu-icon tf-icons bx bx-play"></i></span>
         <span class="play-time">150 sec</span>
+      </div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="play-bar1">
+        
     </div>
     <div class="">
       <div class="artilce_title" >Nirxdana fîlimê...</div>
@@ -136,9 +166,18 @@ for($i=0; $i<4; $i++){
       <div class="details_post av_task">Funny news</div>
     </div>
     <div class="post_time">
-      <form action="https://admin.yekbun.net/manage-avatars/6707517b65fd931012081478" onsubmit="confirmAction(event, () => event.target.submit())" method="post" class="d-inline">
+
+        
+
+    <button type="button" class="btn btn-sm btn-icon download_img">
+          <i class="bx bx-download me-1"></i>
+        </button>
+
+      <form action="{{ url('/')}}" onsubmit="confirmAction(event, () => event.target.submit())" method="post" class="d-inline">
         <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="PjKOc0Svq7WPY0Hh2D0yvO71yq38LmNkZ36qK0rx">
+        @csrf
+       
+       
         <button type="submit" class="btn btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" data-bs-original-title="Remove">
           <i class="bx bx-trash me-1"></i>
         </button>
@@ -169,6 +208,35 @@ for($i=0; $i<4; $i++){
   
   </div>
 </div>
+
+<div class="modal fade" id="createModal1" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <video width="100%" controls style="height2:80%">
+                    <source src="{{ asset('images/popvide.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<x-modal
+    id="createModal10"
+   
+    size="md"
+  >
+    @include('content.dashboard.includes.video_form')
+  </x-modal>
 
 
 <form method="post" action="{{ url('analytics')}}">
@@ -709,31 +777,49 @@ for($i=0; $i<4; $i++){
           </div>
         </div> 
         </div> 
+        
+      
 
 
  </div> 
  
+ 
+ 
+
+ 
  </form>
-
-        </div>
-        </div> 
-
-         </div>
-</div> 
-
-  </div>
-</div>
-
+ 
+ 
+ 
 
 
 
 <!-- conversion section ends -->
 
 
+<script>
+      
+        function confirmAction(event, callback) {
 
-
-</div>
-
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Are you sure you want to delete this?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                customClass: {
+                    confirmButton: 'btn btn-danger me-3',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.value) {
+                    callback();
+                }
+            });
+        }
+    </script>
 
 
     

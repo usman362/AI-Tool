@@ -103,6 +103,7 @@ class IntrosController extends Controller
 		$category->is_insta = $insta;
 		$category->is_twitter = $twitter;
 		$category->cnt = $cnt;
+        $category->status = 1;
 		
 		$category->save();
 		return redirect('/intros')->with('success','Intros successfully created.');

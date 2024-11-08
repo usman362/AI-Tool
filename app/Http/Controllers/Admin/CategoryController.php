@@ -75,14 +75,22 @@ class CategoryController extends Controller
 		}
 		
 		
-		$excat = Category::orderby('cnt', 'desc')->first();
 		
-		if($excat->cnt > 100){
-			$cnt = $excat->cnt;
-			$cnt++;
-		}else{
-			$cnt = 101;
-		}
+
+        $excat = Category::orderby('cnt', 'desc')->first();
+
+        if($excat){
+
+            if($excat->cnt > 100){
+                $cnt = $excat->cnt;
+                $cnt++;
+            }else{
+                $cnt = 101;
+            }
+
+        }else{
+            $cnt = 101;
+        }
 		
 		
 		$category = new Category();
@@ -95,6 +103,7 @@ class CategoryController extends Controller
 		$category->is_tiktok = $tiktok;
 		$category->is_insta = $insta;
 		$category->is_twitter = $twitter;
+        $category->status = 1;
 		$category->cnt = $cnt;
 		
 		$category->save();
@@ -140,18 +149,67 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, $id)
-    {
-        $validated = $request->validated();
 
+
+     
+
+    public function update(Request $request, $id)
+    {
+
+       
+        $request->validate([
+            'cat_name' => ['required']
+			]);
+		
+		$facebook = 0;
+		$yahala = 0;
+		$tiktok = 0;
+		$insta = 0;
+		$twitter = 0;
+		$yekbun = 0;
+		
+		if ($request->has('yekbun')) {
+			$yekbun = 1;	
+		}
+		if ($request->has('yahala')) {
+			$yahala = 1;	
+		}
+		if ($request->has('tiktok')) {
+			$tiktok = 1;	
+		}
+		if ($request->has('facebook')) {
+			$facebook = 1;	
+		}
+		if ($request->has('twitter')) {
+			$twitter = 1;	
+		}
+		if ($request->has('insta')) {
+			$insta = 1;	
+		}
+
+        
+       // $validated = $request->validated();
+/*
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->image->store("/categories", "public");
             $validated["image"] = $imagePath;
         }
+*/
 
         $category = Category::find($id);
-        $category->fill($validated);
+
+        $category->name = $request->cat_name;
+		$category->description = $request->cat_descr;
+		$category->is_yekbun = $yekbun;
+		$category->is_yahala = $yahala;
+		$category->is_facebook = $facebook;
+		$category->is_tiktok = $tiktok;
+		$category->is_insta = $insta;
+		$category->is_twitter = $twitter;
+
+
+      //  $category->fill($validated);
         $category->save();
 
         return back()->with("success", "Category successfully updated.");

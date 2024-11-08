@@ -1,35 +1,74 @@
-<form id="create{{ isset($enableParentCategory) && $enableParentCategory? 'Subcategory': '' }}Form" action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
+<form id="create{{ isset($enableParentCategory) && $enableParentCategory? 'Subcategory': '' }}Form" action="{{ route('sounds.store') }}" method="post" enctype="multipart/form-data">
     @csrf
-    @if (isset($enableParentCategory) && $enableParentCategory)
-        <input type="hidden" name="showCreateSubcategoryFormModal" value="1">
-    @else
-        <input type="hidden" name="showCreateFormModal" value="1">
-    @endif
-    <input type="hidden" name="target" value="{{ $target }}">
     <div class="row">
-        <div class="col-lg-12 mx-auto">
-            <div class="row g-3">
-                <div class="col-md-12">
-                    @if (isset($enableParentCategory) && $enableParentCategory)
-                    <div class="mb-3">
-                        <label class="form-label" for="inputName">Select Category</label>
-                        <select id="inputSubcategory" name="parent_id" class="form-control">
-                            <option value="">Choose</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="col-md-12">
+                    	<div class="details">
+                            <h4><b>Category Name</b></h4>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                	<label><b>Category Name</b></label>
+                                    <input class="form-control" name="cat_name" placeholder="Type Category Name" required="required" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="details">
+                            <h4><b>Allowed Portals</b></h4>
+                           
+                            <div class="row form-switch">
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <div>Yekbun
+                                            <input class="form-check-input closetogglebtn toggl-input" name="yekbun" type="checkbox">
+                                          </div>
+                                        </div>
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="yahala">Yahala</label>
+                                            <input class="form-check-input closetogglebtn toggl-input" checked="checked" id="yahala" name="yahala" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="facebook">Facebook</label>
+                                            <input class="form-check-input closetogglebtn toggl-input" checked="checked" id="facebook" name="facebook" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="tiktok">TikTok</label>
+                                            <input class="form-check-input closetogglebtn toggl-input" id="tiktok" name="tiktok" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="insta">Instagram</label>
+                                            <input class="form-check-input closetogglebtn toggl-input" checked="checked" id="insta" name="insta" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="twitter">Twitter</label>
+                                            <input class="form-check-input closetogglebtn toggl-input" id="twitter" name="twitter" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
                     </div>
-                    @endif
-                    <div>
-                        <label class="form-label" for="inputName">Name</label>
-                        <input type="text" id="inputName" name="name" class="form-control" value="{{ old('name') }}" placeholder="Category Name">
+                    
+                   <!-- row -->
                     </div>
-                    @error('name')
-                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    </div>
+               
 </form>

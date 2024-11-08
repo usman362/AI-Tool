@@ -1,32 +1,98 @@
-<form id="editForm{{ $category->id }}" action="{{ route('categories.update', $category->id) }}" method="post" enctype="multipart/form-data">
+<form id="editForm{{ $av->id }}" action="{{ url('series/categories/update', $av->id) }}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
-    <input type="hidden" name="showEditFormModal{{ $category->id }}" value="1">
-    <input type="hidden" name="target" value="{{ $target }}">
+    <input type="hidden" name="showEditFormModal{{ $av->id }}" value="1">
+ 
     <div class="row">
-        <div class="col-lg-12 mx-auto">
-            <div class="row g-3">
-                <div class="col-md-12">
-                    @if (isset($enableParentCategory) && $enableParentCategory)
-                    <div class="mb-3">
-                        <label class="form-label" for="inputName">Select Category</label>
-                        <select id="inputSubcategory" name="parent_id" class="form-control">
-                            <option value="">Choose</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ $cat->id === $category->parent_id? 'selected': '' }}>{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
+                    
+                   
+                    
+                    <div class="col-md-12">
+                    
+                    	
+                    	<div class="details">
+                            <h4><b>Category Name</b></h4>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                	<label><b>Category Name</b></label>
+                                    <input class="form-control" name="cat_name" placeholder="Type Category Name" value="{{$av->name}}" required="required" />
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                	<label><b>Description</b></label>
+                                    <input class="form-control" name="cat_descr" value="{{$av->description}}" placeholder="Type Category Description"  />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="details"
+                            <h4><b>Allowed Portals</b></h4>
+                           
+                            <div class="row form-switch">
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <div>Yekbun
+
+                                            <input  {{ $av->is_yekbun == 1 ? "checked='checked'" : "" }}  class="form-check-input closetogglebtn toggl-input" name="yekbun" type="checkbox">
+                                          </div>
+                                        </div>
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="yahala">Yahala</label>
+                                            <input {{ $av->is_yahala == 1 ? 'checked="checked"' : '' }} class="form-check-input closetogglebtn toggl-input" id="yahala" name="yahala" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="facebook">Facebook</label>
+                                            <input {{ $av->is_facebook == 1 ? 'checked="checked"' : '' }} class="form-check-input closetogglebtn toggl-input"  id="facebook" name="facebook" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="tiktok">TikTok</label>
+                                            <input  {{ $av->is_tiktok == 1 ? 'checked="checked"' : '' }} class="form-check-input closetogglebtn toggl-input" id="tiktok" name="tiktok" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="insta">Instagram</label>
+                                            <input {{ $av->is_insta == 1 ? 'checked="checked"' : '' }} class="form-check-input closetogglebtn toggl-input" id="insta" name="insta" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                   <div class="bordered ">
+                                          <label for="twitter">Twitter</label>
+                                            <input {{ $av->is_twitter == 1 ? 'checked="checked"' : '' }} class="form-check-input closetogglebtn toggl-input" id="twitter" name="twitter" type="checkbox">
+                                          
+                                        </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                       
+                    
                     </div>
-                    @endif
-                    <div>
-                        <label class="form-label" for="inputName{{ $category->id }}">Name</label>
-                        <input type="text" id="inputName{{ $category->id }}" name="name" class="form-control" value="{{ old('name')?? $category->name }}" placeholder="Category Name">
+                    
+                    
+                    
+                    
+                   
+                    
+                   <!-- row -->
                     </div>
-                    @error('name')
-                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    </div>
+               
 </form>
