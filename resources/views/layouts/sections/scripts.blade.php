@@ -108,17 +108,6 @@ $( document ).ready(function() {
         })
      
 	
-	@if(isset($generatvideo) && $generatvideo == 1){
-		$(".sections").hide();
-		$(".selection_section").show();
-	}
-	@endif
-
-	@if(isset($generatvideo) && $generatvideo == 0){
-		$(".list_video_section").show();
-		$(".selection_section").hide();
-	}
-	@endif
 
 	//$(document).on("click", ".generate_video", function(){
 	//	$(".sections").hide();

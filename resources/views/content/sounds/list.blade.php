@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Manage Intros Categories')
+@section('title', 'Manage Sounds')
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-icons.css') }}" />
@@ -25,6 +25,44 @@
 
 
 <style>
+    
+.custom-file-input {
+    display: none;
+}
+
+/* Style the custom button */
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ECECEC;
+    color: #1c274c !important;
+    font-size: 16px;
+    
+    border-radius: 5px;
+    text-align: center;
+    border: dashed #8c8c8c 4px;
+    width: 250px;
+    margin-top:10px;
+    z-index: 1;
+  position: relative;
+  cursor: pointer !important;
+  
+}
+#fileName{
+    margin-top:5px;
+}
+
+.custom-button:hover {
+    background-color: #ECECEC;
+}
+
+.custom-button:active {
+    background-color: #ECECEC;
+}
+.custom-btn-div{
+    margin:auto;
+    cursor: pointer;
+}
 	.details{
 		background: #f3f3f3;
 	  	padding: 5px;
@@ -45,6 +83,7 @@
 	.ava-link{
 		color:unset;
 	}
+
     .m-t-10{
 		margin-top:10px;
 	}
@@ -129,7 +168,7 @@
 
             <div class="d-flex justify-content-between">
     <h4 class="fw-bold py-3 mb-4">
-          Manage Intros Category
+          Manage Sounds
     </h4>
 </div>
 
@@ -139,8 +178,9 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="m-0"></h5>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal"><i class="bx bx-plus me-0 me-sm-1"></i> Add Category</button>
-     </div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal"><i class="bx bx-plus me-0 me-sm-1"></i> Add Sound</button>
+    
+            </div>
 
     <div class="table-responsive text-nowrap">
       @if(count($categories) > 0)
@@ -149,9 +189,10 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Category Name</th>
-            <th>Total Items</th>
-            <th>Status</th>
+            <th>Sounds Title</th>
+            <th>Total Used</th>
+            <th>Player</th>
+            <th>Length</th>
             <th>Options</th>
           </tr>
         </thead>
@@ -162,93 +203,25 @@
             	<tr>
                 	<td class="upper">
                     	
-                    		INT_{{$av->cnt}}
+                    		SUD_{{$av->cnt}}
                         
                     </td>
                     <td>
                   
-                    	<div class="text-center1"><b>{{$av->name}}</b></div>
-                            @php
-
-                                $showd = 0;
-
-                                if($av->is_yahala == 1){
-                                    echo 'Yahala';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_yekbun == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Yekbun';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_facebook == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Facebook';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_tiktok == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Tiktok';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_insta == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Instagram';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_twitter == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Twitter';
-                                    $showd = 1;
-                                }
-
-
-                            @endphp
-
+                    	<div class="text-center1"><b>{{$av->category}}</b></div>
+                        
 
                     </td>
                     <td>1028</td>
                     <td>
-                    	@if($av->status == 1)
-                        	<label class="switch me-0">
-							  <input type="checkbox" class="switch-input" checked="">
-							  <span class="switch-toggle-slider">
-
-							  </span>
-							  <span class="switch-label"></span>
-							</label>
-                        @else
-                        	<label class="switch me">
-							  <input type="checkbox" class="switch-input">
-							  <span class="switch-toggle-slider">
-
-							  </span>
-							  <span class="switch-label"></span>
-							</label>
-                        @endif
+                    <audio controls>
+                        <source src="{{ asset('images/sounds') }}/{{$av->file}}" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
                     </td>
+                    <td>2:40Min</td>
                     <td>
-                    	
+                    	        
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#editModal{{ $av->_id }}"><i class="bx bx-edit"></i></button>
 
 
@@ -263,14 +236,14 @@
                                                         class="d-flex justify-content-center align-items-center p-2 gap-1 bg-white rounded-2 mx-auto">
                                                         
                                                         <h5 class="modal-title fs-3"
-                                                            id="editModal{{ $av->_id }}Label">Edit Intros</h5>
+                                                            id="editModal{{ $av->_id }}Label">Edit Sound</h5>
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                @include('content.intros.includes.edit_form')
+                                                @include('content.sounds.includes.edit_form')
                                             </div>
                                             <div class="modal-footer p-0 d-flex justify-content-center pb-2">
                                                 <button type="submit" class="btn btn-info fs-3"
@@ -281,7 +254,7 @@
                                 </div>
 
 
-                         <form action="intros/{{$av->id}}"  onsubmit="confirmAction(event, () => event.target.submit())" method="post"  class="d-inline">
+                         <form action="sounds_del/{{$av->id}}"  onsubmit="confirmAction(event, () => event.target.submit())" method="post"  class="d-inline">
                       
                                 @method('DELETE')
                                 @csrf                                <button type="submit" class="btn btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" data-bs-original-title="Remove">
@@ -316,20 +289,18 @@
     </div>
   </div>
   <!--/ Basic Bootstrap Table -->
-
-
+ 
   <x-modal
     id="createModal"
-    title="Add Intros"
-    saveBtnText="Create"
+    title="Add Sound"
+    saveBtnText="Upload"
     saveBtnType="submit"
     saveBtnForm="createForm"
     size="md"
     :show="old('showCreateFormModal')? true: false"
   >
-    @include('content.intros.includes.create_form')
+    @include('content.sounds.includes.create_sound_form')
   </x-modal>
-
             <!-- pricingModal -->
                         <!--/ pricingModal -->
 
@@ -362,6 +333,13 @@
                 }
             });
         }
+
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const fileName = event.target.files[0] ? event.target.files[0].name : 'No file chosen';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
     </script>
 
         @endsection

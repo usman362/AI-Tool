@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+ 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Models\Intros;
+use App\Models\Intros_list;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -23,6 +25,70 @@ class IntrosController extends Controller
                             ->whereNull('parent_id')
                             ->get();
         return view("content.intros.index", compact("categories"));
+    }
+
+
+
+    public function intro_manage(){
+
+        $categories = Intros_list::get();
+        return view("content.intros.list", compact("categories"));
+        
+    }
+
+    public function intro_manage_upload(Request $request){
+
+
+
+
+        $request->validate([
+            'cat_name' => ['required'],
+            //'file' => 'required|mimes:mp4'
+			]);
+            
+            $uniqueFileName = "";
+
+            $file = $request->file('file');
+
+            
+
+           // if ($request->file('file') && $request->file('file')->isValid()) {
+            if ($request->file('file') ) {
+                
+                // Get the original filename
+                $originalFileName = $request->file('file')->getClientOriginalName();
+    
+                // Generate a unique file name using the current timestamp and a random string
+                $uniqueFileName = Str::random(10) . '-' . time() . '.mp4';
+    
+                // Define the file path to save it in the 'images' folder at the root
+                $filePath = public_path('images/videos/' . $uniqueFileName);
+    
+                // Move the uploaded file to the 'images' directory
+                $request->file('file')->move(public_path('images/videos'), $uniqueFileName);
+    
+                
+            }else{
+
+                
+                return redirect('/intros-manage')->with('error','There is an error. Please try again later');
+            }
+		
+		
+		
+		
+		
+		$category = new Intros_list();
+		
+		$category->category = $request->cat_name;
+		
+        $category->file = $uniqueFileName;
+	
+
+		$category->save();
+		return redirect('/intros-manage')->with('success','Intros successfully created.');
+
+       
     }
 
     /**

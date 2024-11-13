@@ -4,6 +4,16 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme"
     style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
  
+
+<style>
+
+    
+.bg-menu-theme .menu-sub > .menu-item > .menu-link::before{
+    background-color: unset !important;
+}
+
+</style>
+
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo ">
         <a href="{{ url('/') }}" class="app-brand-link">
@@ -112,25 +122,59 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Settings</span>
         </li>
+        
         <li class="menu-item "> 
             <a href="{{ url('settings/team/members')}}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user"></i>
                 <div>Add Admin</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('intros/*') ? 'active open' : '' }} {{ Request::is('intros') ? 'active open' : '' }} "> 
-            <a href="{{ url('/intros') }}" class="menu-link">
+
+       
+        <li class="menu-item {{ Request::is('intros/*') ? 'active open' : '' }} {{ Request::is('intros-manage') ? 'active open' : '' }} {{ Request::is('intros') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-film"></i>
                 <div>Manage Intros</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item ">
+                    <a href="{{ url('/intros') }}" class="menu-link">
+                        <div>Intros Category</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a href="{{ url('/intros-manage') }}" class="menu-link">
+                        <div>Manage Intros</div>
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="menu-item  {{ Request::is('sounds/*') ? 'active open' : '' }}"> 
         
-            <a href="{{ url('/sounds') }}" class="menu-link">
+
+        
+
+
+
+        <li class="menu-item {{ Request::is('sounds/*') ? 'active open' : '' }} {{ Request::is('sounds-manage') ? 'active open' : '' }} {{ Request::is('sounds') ? 'active open' : '' }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-music"></i>
                 <div>Manage Sounds</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item ">
+                    <a href="{{ url('/sounds') }}" class="menu-link">
+                        <div>Sounds Category</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a href="{{ url('/sounds-manage') }}" class="menu-link">
+                        <div>Manage Sounds</div>
+                    </a>
+                </li>
+            </ul>
         </li>
+
+
 
         <li class="menu-item {{ Request::is('sounds/*') ? 'active open' : '' }}  {{ Request::is('sounds') ? 'active open' : '' }}  " style="display:none;">
 

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Str;
 use App\Models\Sounds;
+use App\Models\Sounds_list;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +19,86 @@ class SoundsController extends Controller
      */
     public function index()
     {
-        
+         
         $target = request()->target;
         $categories = Sounds::where('target', $target)
                             ->whereNull('parent_id')
                             ->get();
         return view("content.sounds.index", compact("categories"));
+    }
+
+    public function sounds_manage(){
+
+        $categories = Sounds_list::get();
+        return view("content.sounds.list", compact("categories"));
+        
+    }
+
+    public function sounds_manage_upload(Request $request){
+
+
+
+
+        $request->validate([
+            'cat_name' => ['required'],
+           // 'file' => 'required|mimes:mp3'
+			]);
+            
+            $uniqueFileName = "";
+
+            $file = $request->file('file');
+
+            
+
+           // if ($request->file('file') && $request->file('file')->isValid()) {
+            if ($request->file('file') ) {
+                
+                // Get the original filename
+                $originalFileName = $request->file('file')->getClientOriginalName();
+    
+                // Generate a unique file name using the current timestamp and a random string
+                $uniqueFileName = Str::random(10) . '-' . time() . '.mp3';
+    
+                // Define the file path to save it in the 'images' folder at the root
+                $filePath = public_path('images/sounds/' . $uniqueFileName);
+    
+                // Move the uploaded file to the 'images' directory
+                $request->file('file')->move(public_path('images/sounds'), $uniqueFileName);
+    
+                
+            }else{
+
+                
+                return redirect('/sounds-manage')->with('error','There is an error. Please try again later');
+            }
+
+            $excat = Sounds_list::orderby('cnt', 'desc')->first();
+
+            if($excat){
+    
+                if($excat->cnt > 100){
+                    $cnt = $excat->cnt;
+                    $cnt++;
+                }else{
+                    $cnt = 101;
+                }
+    
+            }else{
+                $cnt = 101;
+            }
+		
+		$category = new Sounds_list();
+		
+		$category->category = $request->cat_name;
+        $category->cnt = $cnt;
+		
+        $category->file = $uniqueFileName;
+	
+
+		$category->save();
+		return redirect('/sounds-manage')->with('success','Sounds successfully created.');
+
+       
     }
 
     /**
@@ -49,31 +124,6 @@ class SoundsController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
-		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
 		
 		
 		$excat = Sounds::orderby('cnt', 'desc')->first();
@@ -92,22 +142,16 @@ class SoundsController extends Controller
         }
 		
 		
-		
-		
 		$category = new Sounds();
 		
 		$category->name = $request->cat_name;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
+		
+		$category->description = $request->cat_descr;
 		$category->cnt = $cnt;
         $category->status = 1;
 		
 		$category->save();
-		return redirect('/sounds')->with('success','Intros successfully created.');
+		return redirect('/sounds')->with('success','Sound successfully created.');
 
        
     }
@@ -139,6 +183,13 @@ class SoundsController extends Controller
         //
     }
 
+    public function intro_manage(){
+
+        $categories = Sounds_list::get();
+        return view("content.intros.list", compact("categories"));
+        
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -152,45 +203,11 @@ class SoundsController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
-		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
-		
-		
-		
-		
 		$category = Sounds::where('_id', $id)->first();
 		
 		$category->name = $request->cat_name;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
-       
+		$category->description = $request->cat_descr;
+		
         $category->save();
         return redirect('/sounds')->with('success','Sounds successfully updated.');
     }
@@ -203,23 +220,36 @@ class SoundsController extends Controller
      */
 	public function delcat($id){
 		$category = Sounds::find($id);
-		if ($category->image)
-            Storage::delete($category->image);
+		//if ($category->image)
+          //  Storage::delete($category->image);
 
         $category->delete();
 
         return back()->with("success", "Sound successfully deleted.");
 	}
+
+
+    public function sounds_del($id){
+        $category = Sounds_list::find($id);
+
+        // Delete Image
+        //if ($category->image)
+           // Storage::delete($category->image);
+
+        $category->delete();
+
+        return back()->with("success", "Sound successfully deleted.");
+    }
     public function destroy($id)
     {
         $category = Sounds::find($id);
 
         // Delete Image
-        if ($category->image)
-            Storage::delete($category->image);
+        //if ($category->image)
+           // Storage::delete($category->image);
 
         $category->delete();
 
-        return back()->with("success", "Sound successfully deleted.");
+        return back()->with("success", "Sound Category successfully deleted.");
     }
 }

@@ -280,6 +280,10 @@
 		max-width:260px;
 		margin:auto;
 	}
+	.m-10{
+		margin-top:5px;
+		margin-bottom:5px;
+	}
 	.option-icon{
 		font-size:70px !important;
 	}
@@ -293,7 +297,17 @@
         color: #000;
         border-radius: 5px;
     }
-
+	.generate{
+		float:right;
+		margin:5px;
+		background:#c0c0c0;
+		border-color:#c0c0c0;
+	}
+	.regenerate{
+		margin:15px;
+		background:#c0c0c0;
+		border-color:#c0c0c0;
+	}
 	.card{
 		padding:20px;
 	}

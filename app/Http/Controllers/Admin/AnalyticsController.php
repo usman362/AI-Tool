@@ -24,14 +24,13 @@ class AnalyticsController extends Controller
 // $country=0;
   //  $music = Music::count(); 
   //  $country  = Country::count();
-  $currentPath = $request->path();
-  $generatvideo = 0;
-  if  ($currentPath === 'genratvideo') {
-      $generatvideo = 1;
-  }
-    
-  return view('content.dashboard.index', compact('generatvideo'));
+  
+  return view('content.dashboard.index');
    // return view('content.dashboard.dashboards-analytics' , compact('male_account', 'female_account', 'music' , 'country'));
+  }
+
+  public function genratvideo(){
+    return view('content.dashboard.genratvideo');
   }
 
 

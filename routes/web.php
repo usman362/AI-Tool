@@ -268,13 +268,13 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
     Route::get('/download-video', [AnalyticsController::class, 'download'])->name('video.download');
     Route::get('/download-photo', [AnalyticsController::class, 'download_photo'])->name('photo.download');
 
-    Route::get('/genratvideo', [AnalyticsController::class, 'index'])->name('adminpanel');
+    Route::get('/genratvideo', [AnalyticsController::class, 'genratvideo'])->name('adminpanel');
 
     
     // analystics
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('dashboard-analytics');
 	
-	Route::post('/analytics', [AnalyticsController::class, 'index'])->name('dashboard-analytics');
+	Route::post('/genratvideo', [AnalyticsController::class, 'genratvideo'])->name('dashboard-analytics');
 
     // Main Page Route
     // Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
@@ -501,9 +501,13 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
     //intros
     Route::resource('/intros', IntrosController::class);
 
-    Route::resource('/sounds', SoundsController::class);
+    Route::get('/intros-manage', [IntrosController::class, 'intro_manage'])->name('intros-manage');
+    Route::post('/intros-manage', [IntrosController::class, 'intro_manage_upload'])->name('intros-manage');
 
-    
+    Route::resource('/sounds', SoundsController::class);
+    Route::get('/sounds-manage', [SoundsController::class, 'sounds_manage'])->name('sounds-manage');
+    Route::post('/sounds-manage', [SoundsController::class, 'sounds_manage_upload'])->name('sounds-manage');
+    Route::delete('/sounds_del/{id}', [SoundsController::class, 'sounds_del'])->name('destroy.sounds_del');
     
     //Organization
     Route::post('/add_organization', [App\Http\Controllers\Admin\Donation\OrganizationController::class, 'add_organization'])->name('add.organization');

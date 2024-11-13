@@ -170,62 +170,8 @@
                     <td>
                   
                     	<div class="text-center1"><b>{{$av->name}}</b></div>
-                            @php
-
-                                $showd = 0;
-
-                                if($av->is_yahala == 1){
-                                    echo 'Yahala';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_yekbun == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Yekbun';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_facebook == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Facebook';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_tiktok == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Tiktok';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_insta == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Instagram';
-                                    $showd = 1;
-                                }
-
-                                if($av->is_twitter == 1){
-                                    
-                                    if($showd == 1){
-                                        echo ' - ';
-                                    }
-                                    echo 'Twitter';
-                                    $showd = 1;
-                                }
-
-
-                            @endphp
+                        <div class="text-center1">{{$av->description}}</div>
+                            
 
 
                     </td>
