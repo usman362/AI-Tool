@@ -193,7 +193,7 @@ for($i=0; $i<4; $i++){
 </div>
 
 <div class="modal fade" id="createModal1" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog popped">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="videoModalLabel">Category</h5>

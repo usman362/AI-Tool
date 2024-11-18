@@ -284,6 +284,31 @@
 		margin-top:5px;
 		margin-bottom:5px;
 	}
+	.m-15{
+		margin-top:15px;
+		margin-bottom:15px;
+	}
+	.slider-div{
+		padding:20px !important;
+		padding-top:5px !important;
+		background:#fff !important;
+	}
+	.popped2{
+		top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+	}
+	.popped video {
+            max-width: 100%;
+            max-height: 75vh;
+			
+            object-fit: contains; /* Ensures the video scales without distortion */
+        }
 	.option-icon{
 		font-size:70px !important;
 	}
@@ -421,13 +446,79 @@
     pointer-events: none; /* Ensures clicks pass through this overlay */
 	border-radius: 10px;
 }
+.bordered h4{
+	font-size: 1.175rem !important;
+}
+.forfile{
+	cursor:pointer;
+}
+#imagePreviewContainer{
+	margin-top:10px;
+	margin-bottom:10px;
+	
+}
+#imagePreviewContainer img{
+	width:80px;
+	margin:10px;
+	height:80px;
+	object-fit: cover;
+	border-radius: 10px;
+}
+.image-preview-container{
+	position:relative;
+	width:23%;
+	padding:1%;
+	float:left;
+}
+.image-preview-main{
+	position:relative;
+}
+.remove-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #ED1C24;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 14px;
+      padding: 2px 6px;
+      cursor: pointer;
+	  height: 25px;
+  width: 25px;
+    }
+
+    .remove-btn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+	.audio-preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+	  margin-top:10px;
+    }
+
+    /* Style for individual audio preview container */
+    .audio-preview {
+      position: relative;
+      width: 100%; /* Width for audio player container */
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+	audio{
+		width:100%;
+	}
+
 
 .art-txt {
     position: absolute;
     bottom: 10px; /* Adjust for positioning */
     left: 10px;
     color: #fff;
-    font-size: 1em;
+    font-size: 0.6em;
     font-weight: bold;
     padding: 5px;
 	z-index:1;
@@ -520,11 +611,7 @@
 }
 
 /* Video styling */
-video {
-    width: 100%; /* Full width of its container */
-    height: 100vh; /* Full screen height */
-    object-fit: contain; /* Ensures the video maintains its aspect ratio */
-}
+
 .download_img, .btn-sm{
 	z-index:1;
 	position:relative;

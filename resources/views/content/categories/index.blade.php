@@ -176,7 +176,7 @@
                         </div>
 
 
-                    	&nbsp;<span>{{$av->name}}<br />{{$av->task}}</span>
+                    	&nbsp;<span>{{$av->name}}<br />{{$av->description}}</span>
 
                         </a>
                     </td>

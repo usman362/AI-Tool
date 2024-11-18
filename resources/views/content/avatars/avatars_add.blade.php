@@ -185,8 +185,63 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="details">
+                            <b>Language Setting</b>
+                                 <div  class="form-check form-switch mb-2 righ-check-option" style="display:none;">
+                            	 	<input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                                </div>
+                            
+                            <div class="txt">Translate Settings</div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <select class="form-control" name="select_lang">
+                                        <option value="">Select Language</option>
+
+                                        
+                                            <option value="English">English</option>
+                                            <option value="Kurdi">Kurdi</option>
+                                            <option value="Deutsch">Deutsch</option>
+                                            <option value="Arabic">Arabic</option>
+                                        
+
+                                    </select>
+                                	
+                                </div>
+                                <div class="col-md-6">
+                                <select class="form-control" name="translate_lang">
+                                        <option value="">Translate To</option>
+                                        
+                                        
+                                        <option value="English">English</option>
+                                            <option value="Kurdi">Kurdi</option>
+                                            <option value="Deutsch">Deutsch</option>
+                                            <option value="Arabic">Arabic</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
                         
-                        <div class="details"
+                        <div class="details">
+                            <h4><b>Select Blog Category</b></h4>
+                            <div class="txt">Which category will be manage by this Avatar</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select class="form-control" name="avatar_days" required>
+                                    	<option value="">Select Blog Category</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="details">
                             <h4><b>Avatar Activity</b></h4>
                             <div class="txt">Working Time</div>
                             <div class="row">
@@ -217,7 +272,7 @@
                             </div>
                         </div>
                         
-                        <div class="details"
+                        <div class="details">
                             <h4><b>Avatar Article</b></h4>
                             <div class="txt">Amount per Time</div>
                             <div class="row">
@@ -257,7 +312,7 @@
                     <div class="col-md-4">
                         
                         
-                         <div class="details"
+                         <div class="details">
                             <h4><b>Permissions</b></h4>
                             <div class="txt">Convert blog to Video</div>
                             <div class="row">
@@ -278,7 +333,7 @@
                             </div>
                         </div>
                         
-                        <div class="details"
+                        <div class="details" style="display:none;">
                             <h4><b>Sharing Options</b></h4>
                             <div class="txt">Who can see the Post</div>
                             <div class="row">
@@ -311,47 +366,7 @@
                                 </div>
                             </div>
                         </div>
-                        
 
-                        <div class="details">
-                            <b>Language Setting</b>
-                                 <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
-                                </div>
-                            
-                            <div class="txt">Translate Settings</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <select class="form-control" name="select_lang">
-                                        <option value="">Select Language</option>
-
-                                        
-                                            <option value="English">English</option>
-                                            <option value="Kurdi">Kurdi</option>
-                                            <option value="Deutsch">Deutsch</option>
-                                            <option value="Arabic">Arabic</option>
-                                        
-
-                                    </select>
-                                	
-                                </div>
-                                <div class="col-md-6">
-                                <select class="form-control" name="translate_lang">
-                                        <option value="">Translate To</option>
-                                        
-                                        
-                                        <option value="English">English</option>
-                                            <option value="Kurdi">Kurdi</option>
-                                            <option value="Deutsch">Deutsch</option>
-                                            <option value="Arabic">Arabic</option>
-
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
                         <div class="details">
                             <b>Sources</b>
                                  
@@ -369,20 +384,15 @@
                             </div>
                         </div>
                         
+
+                        <div class="details">
+                            <h4><b>Social Media Login</b>
                         
-                    </div>
-                    <!-- col6 ends -->
-                    
-                    
-                    <!-- col6 start -->
-                    
-                    <!-- col6 start -->
-                    <div class="col-md-4">
-                        
-                        
-                         <div class="details"
-                            <h4><b>Social Media Login</b></h4>
-                            <div class="txt">Add Access to Portal</div>
+                            <div  class="form-check form-switch mb-2 righ-check-option">
+                            	 	<input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                                </div>
+                            </h4>
+                            <div class="txt">Yekbun App</div>
                             <div class="row">
                                 <div class="col-md-12 ">
                                 	
@@ -426,9 +436,14 @@
                         </div>
                         
                         
-                        <div class="details"
-                            <h4><b>Social Media Login</b></h4>
-                            <div class="txt">Add Access to Portal</div>
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Yahala App</div>
                             <div class="row">
                                 <div class="col-md-12 ">
                                 	
@@ -470,9 +485,129 @@
                                
                             </div>
                         </div>
-                        <div class="details"
-                            <h4><b>Social Media Login</b></h4>
-                            <div class="txt">Add Access to Portal</div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <!-- col6 ends -->
+                    
+                    
+                    <!-- col6 start -->
+                    
+                    <!-- col6 start -->
+                    <div class="col-md-4">
+                        
+                        
+                         <div class="details">
+                         <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Facebook</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" placeholder="Social Media Title" name="media_1" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" name="username_1" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" class="form-control" name="pass_1" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline1">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline1" class="form-check-input closetogglebtn" name="keep_online_1" type="checkbox" >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_1">
+                                        	<option value="15">15 min</option>
+                                            <option value="30">30 min</option>
+                                            <option value="45">45 min</option>
+                                            <option value="60">60 min</option>
+                                            <option value="90">90 min</option>
+                                            <option value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Tiktok</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" placeholder="Social Media Title" name="media_2" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" name="username_2" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" class="form-control" name="pass_2" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline2">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline2" class="form-check-input closetogglebtn" name="keep_online_2" type="checkbox" >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_2">
+                                        	<option value="15">15 min</option>
+                                            <option value="30">30 min</option>
+                                            <option value="45">45 min</option>
+                                            <option value="60">60 min</option>
+                                            <option value="90">90 min</option>
+                                            <option value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Instagram</div>
                             <div class="row">
                                 <div class="col-md-12 ">
                                 	

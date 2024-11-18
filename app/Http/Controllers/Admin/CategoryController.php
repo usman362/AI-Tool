@@ -48,35 +48,6 @@ class CategoryController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
-		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
-		
-		
-		
-
         $excat = Category::orderby('cnt', 'desc')->first();
 
         if($excat){
@@ -97,12 +68,12 @@ class CategoryController extends Controller
 		
 		$category->name = $request->cat_name;
 		$category->description = $request->cat_descr;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
+		//$category->is_yekbun = $yekbun;
+		//$category->is_yahala = $yahala;
+		//$category->is_facebook = $facebook;
+		//$category->is_tiktok = $tiktok;
+		//$category->is_insta = $insta;
+		//$category->is_twitter = $twitter;
         $category->status = 1;
 		$category->cnt = $cnt;
 		
@@ -161,31 +132,7 @@ class CategoryController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
 		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
 
         
        // $validated = $request->validated();
@@ -201,14 +148,7 @@ class CategoryController extends Controller
 
         $category->name = $request->cat_name;
 		$category->description = $request->cat_descr;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
-
-
+		
       //  $category->fill($validated);
         $category->save();
 

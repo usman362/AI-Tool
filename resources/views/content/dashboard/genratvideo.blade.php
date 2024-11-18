@@ -2,9 +2,12 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/nouislider/nouislider.css') }}" />
 <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css " rel="stylesheet">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"> @endsection @section('vendor-script') <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> @endsection @section('page-script') <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script> @endsection @section('content') @include('layouts/customDesign') <style>
+<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> @endsection @section('page-script') <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script> @endsection @section('content') @include('layouts/customDesign') 
+<script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
+<style>
   .sections {
     display: none;
   }
@@ -67,7 +70,7 @@
   
   <!-- create link section -->
   <div class="row options_section main_section sections">
-    <div class="col-md-12" style="margin:auto;">
+    <div class="col-md-10" style="margin:auto;">
       <div class="row">
       <div class="col-md-6">
         <h4 class="link_section">
@@ -135,13 +138,42 @@
           </div>
         </div>
         <br />
-        <div class="details">
-          <div class="txt ">Video Length <br> Video length duration based on Voice - Over </div>
-          <div class="row ">
-            <div class="col-md-12">
-              <img src="{{ asset('images/viddet.png')}}" style="width:100%;" />
-            </div>
+        <div class="details ">
+
+        
+        <div style="display:flex;justify-content: space-between">
+						<p>
+						<b>Video Length</b><br>
+              Video length duration based on Voice - Over
+						</p>
+  
+						<div class="d-flex">
+							<div class="flex-grow-1 row">
+								<div class="col-3 text-end mt-1">
+									<label class="switch me-0">
+										<input type="checkbox" class="switch-input" name="call_duration" data-name="call_duration" data-size="100" >
+									<span class="switch-toggle-slider">
+
+									</span>
+									<span class="switch-label"></span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+          <div class="slider-div">
+					<div class="row m-15">
+						<div class="col-xl-9 col-md-9">
+						</div>
+						<div class="col-xl-3 col-md-3 col-sm-12 ">
+							<input type="text"  value="100 min" id="slider-pips4-input"  class="form-control text-center">
+						</div>
+					</div>
+					<div class="card-body mb-4">
+          <div id="slider-pips" onclick="sliderVal()"></div>
           </div>
+</div>
         </div>
         <br />
         <div class="details link_section">
@@ -260,10 +292,16 @@
           </div>
           <div class="col-md-6">
             <div class="bordered text-center bg-brown">
-              <i class="bx bx-image bg-font"></i>
-              <h4>Own Image</h4> Upload your own images take care of image size
+              <input type="file" accept="image/*" multiple style="display:none;" id="ownimage" />
+              <label for="ownimage" class="forfile">
+                <i class="bx bx-image bg-font"></i>
+                <h4>Own Image</h4> Upload your own images take care of image size
+              </label>
             </div>
-          </div>
+            </div>
+            <div class="image-preview-main" id="imagePreviewContainer"></div>
+
+          
         </div>
       </div>
       
@@ -354,10 +392,16 @@
             </div>
             <div class="col-md-6">
               <div class="bordered text-center bg-brown">
+                
+                <input type="file" style="display:none" id="audioInput" accept="audio/mp3" multiple />
+                <label class="forfile" for="audioInput">
                 <i class="bx bx-image bg-font"></i>
                 <h4>Own Music</h4> Upload your own Music take care of duration
+                </label>
               </div>
             </div>
+
+            <div class="audio-preview-container" id="audioPreviewContainer"> </div>
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
@@ -431,7 +475,7 @@
       </div>
       </div>
       <div class=" text-center">
-        <button class="btn btn-success conver_back_btn" type="button"> Back <span class="play-span">
+        <button class="btn btn-success conver_back_btn" style="display:none;" type="button"> Back <span class="play-span">
             <i class="bx bx-play"></i>
           </span>
         </button>
@@ -494,6 +538,8 @@
     </div>
   </div>
 </form>
+
+
 <!-- conversion section ends -->
 <script>
   function confirmAction(event, callback) {
@@ -515,4 +561,6 @@
       }
     });
   }
+
+  
 </script> @endsection

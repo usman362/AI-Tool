@@ -77,7 +77,7 @@
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Home</span>
             </li>
-            <li class="menu-item ">
+            <li class="menu-item {{ Request::path() == '/' ? 'active' : '' }} {{ Request::path() == 'analytics' ? 'active' : '' }}">
                 <a href="{{ url('/') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div>Dashboard</div>
@@ -91,13 +91,13 @@
 
         @can('avatars.read')
             
-                    <li class="menu-item ">
+                    <li class="menu-item {{ Request::is('avatars*') ? 'active' : '' }}">
                         <a href="{{ url('/avatars') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-user"></i>
                             <div>Add Avatars</div>
                         </a>
                     </li>
-                    <li class="menu-item ">
+                    <li class="menu-item {{ Request::is('manage-avatars*') ? 'active' : '' }}">
                         <a href="{{ url('/manage-avatars') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-news"></i>
                             <div>Manage Feeds</div>
@@ -112,7 +112,7 @@
             <span class="menu-header-text">Categories</span>
         </li>     
         
-        <li class="menu-item ">
+        <li class="menu-item  {{ Request::is('series/categories*') ? 'active' : '' }}">
             <a href="{{ url('/series/categories') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-category"></i>
                  <div>Manage Categories</div>
@@ -123,7 +123,7 @@
             <span class="menu-header-text">Settings</span>
         </li>
         
-        <li class="menu-item "> 
+        <li class="menu-item {{ Request::is('settings/team/*') ? 'active' : '' }} "> 
             <a href="{{ url('settings/team/members')}}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user"></i>
                 <div>Add Admin</div>
@@ -131,18 +131,18 @@
         </li>
 
        
-        <li class="menu-item {{ Request::is('intros/*') ? 'active open' : '' }} {{ Request::is('intros-manage') ? 'active open' : '' }} {{ Request::is('intros') ? 'active open' : '' }}">
+        <li class="menu-item {{ Request::is('intros*') ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-film"></i>
                 <div>Manage Intros</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item ">
+                <li class="menu-item {{ Request::is('intros') ? ' active' : '' }}">
                     <a href="{{ url('/intros') }}" class="menu-link">
                         <div>Intros Category</div>
                     </a>
                 </li>
-                <li class="menu-item ">
+                <li class="menu-item {{ Request::is('intros-manage*') ? ' active' : '' }}">
                     <a href="{{ url('/intros-manage') }}" class="menu-link">
                         <div>Manage Intros</div>
                     </a>
@@ -161,12 +161,12 @@
                 <div>Manage Sounds</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item ">
+                <li class="menu-item {{ Request::path() == 'sounds' ? 'active' : '' }}">
                     <a href="{{ url('/sounds') }}" class="menu-link">
                         <div>Sounds Category</div>
                     </a>
                 </li>
-                <li class="menu-item ">
+                <li class="menu-item {{ Request::is('sounds-manage') ? ' active' : '' }}">
                     <a href="{{ url('/sounds-manage') }}" class="menu-link">
                         <div>Manage Sounds</div>
                     </a>
@@ -194,7 +194,7 @@
                 </ul>
         </li>
 
-        <li class="menu-item "> 
+        <li class="menu-item {{ Request::is('logs') ? 'active open' : '' }}  "> 
             <a href="{{ url('/logs') }}" class="menu-link {{ Request::is('logs') ? 'active open' : '' }}">
             <i class="menu-icon tf-icons bx bx-file"></i>
                 <div>System Logs</div>

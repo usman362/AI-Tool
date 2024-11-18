@@ -114,31 +114,9 @@ class IntrosController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
 		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
+		
+		
 		
 		
 		$excat = Intros::orderby('cnt', 'desc')->first();
@@ -162,12 +140,8 @@ class IntrosController extends Controller
 		$category = new Intros();
 		
 		$category->name = $request->cat_name;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
+		$category->description = $request->cat_description;
+		
 		$category->cnt = $cnt;
         $category->status = 1;
 		
@@ -225,44 +199,13 @@ class IntrosController extends Controller
             'cat_name' => ['required']
 			]);
 		
-		$facebook = 0;
-		$yahala = 0;
-		$tiktok = 0;
-		$insta = 0;
-		$twitter = 0;
-		$yekbun = 0;
-		
-		if ($request->has('yekbun')) {
-			$yekbun = 1;	
-		}
-		if ($request->has('yahala')) {
-			$yahala = 1;	
-		}
-		if ($request->has('tiktok')) {
-			$tiktok = 1;	
-		}
-		if ($request->has('facebook')) {
-			$facebook = 1;	
-		}
-		if ($request->has('twitter')) {
-			$twitter = 1;	
-		}
-		if ($request->has('insta')) {
-			$insta = 1;	
-		}
-		
-		
 		
 		
 		$category = Intros::where('_id', $id)->first();
 		
 		$category->name = $request->cat_name;
-		$category->is_yekbun = $yekbun;
-		$category->is_yahala = $yahala;
-		$category->is_facebook = $facebook;
-		$category->is_tiktok = $tiktok;
-		$category->is_insta = $insta;
-		$category->is_twitter = $twitter;
+		$category->description = $request->cat_description;
+		
        
         $category->save();
         return redirect('/intros')->with('success','Intros successfully updated.');
