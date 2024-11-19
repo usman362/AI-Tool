@@ -268,6 +268,9 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
     Route::get('/download-video', [AnalyticsController::class, 'download'])->name('video.download');
     Route::get('/download-photo', [AnalyticsController::class, 'download_photo'])->name('photo.download');
 
+    Route::get('/getsounds/{id}', [SoundsController::class, 'getsounds'])->name('getsounds');
+    
+
     Route::get('/genratvideo', [AnalyticsController::class, 'genratvideo'])->name('adminpanel');
 
     

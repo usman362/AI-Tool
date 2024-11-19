@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
+use App\Models\Sounds_list;
 //use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -38,7 +39,12 @@ class Sounds extends Model
         return LogOptions::defaults();
     }
 
-   
+    public function soundsLists()
+    {
+        return $this->hasMany(Sounds_list::class, 'category');
+    }
+
+    
    
 
     

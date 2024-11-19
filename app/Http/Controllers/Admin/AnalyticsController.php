@@ -7,6 +7,7 @@ use Symfony\Component\Mime\MimeTypes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Sounds;
 use App\Models\Music;
 use App\Models\Country;
 
@@ -30,7 +31,8 @@ class AnalyticsController extends Controller
   }
 
   public function genratvideo(){
-    return view('content.dashboard.genratvideo');
+    $categories = Sounds::get();
+    return view('content.dashboard.genratvideo', compact('categories'));
   }
 
 

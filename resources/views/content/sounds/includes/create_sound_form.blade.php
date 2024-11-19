@@ -8,7 +8,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 	<label><b>Category Name</b></label>
-                                    <input class="form-control" name="cat_name" placeholder="Type Category Name" required="required" />
+                                    <select class="form-control" name="cat_name" required="required">
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $cat)
+                                            <option value="{{$cat->_id}}">{{$cat->name}}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
 

@@ -29,9 +29,24 @@ class SoundsController extends Controller
 
     public function sounds_manage(){
 
-        $categories = Sounds_list::get();
-        return view("content.sounds.list", compact("categories"));
+        $sounds = Sounds_list::get();
+
         
+        $categories = Sounds::get();
+        return view("content.sounds.list", compact("sounds", "categories"));
+        
+    }
+
+    public function getsounds($id){
+       // $sounds = Sounds_list::where('category', $id)->get();
+        $sounds = Sounds_list::where('category', $id)->with('sound')->get();
+
+        //print_r($sounds[0]->sound->name);
+        //die("");
+        return response()->json([
+            'success' => true,
+            'data' => $sounds
+        ]);
     }
 
     public function sounds_manage_upload(Request $request){

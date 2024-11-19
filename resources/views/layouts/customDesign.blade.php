@@ -1,5 +1,7 @@
 <style>	
-	
+	.generate:hover{
+		background: #c0c0c0;
+	}
 	.avatar_details{
 		background: #f3f3f3;
 	  	padding: 10px;
@@ -488,6 +490,57 @@
   width: 25px;
     }
 
+	/* Style the custom button */
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ECECEC;
+    color: #1c274c !important;
+    font-size: 16px;
+    
+    border-radius: 5px;
+    text-align: center;
+    border: dashed #8c8c8c 4px;
+    width: 250px;
+    margin-top:10px;
+    z-index: 1;
+  position: relative;
+  cursor: pointer !important;
+  
+}
+#fileName{
+    margin-top:5px;
+}
+#own_image_div{
+	display:none;
+}
+.select_ai_visual{
+	cursor:pointer;
+}
+.image-preview-container{
+	cursor:pointer;
+}
+
+.custom-button:hover {
+    background-color: #ECECEC;
+}
+.custom-button div{
+	color:#84899C;
+}
+.custom-button:active {
+    background-color: #ECECEC;
+}
+.custom-btn-div{
+    margin:auto;
+    cursor: pointer;
+}
+
+	.upload-btn{
+		cursor:pointer;
+	}
+	.img-active{
+		border:solid 5px #696CFF;
+	}
     .remove-btn:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
@@ -616,5 +669,96 @@
 	z-index:1;
 	position:relative;
 }
+
+
+.select_ai_music{
+	cursor:pointer;
+}
+#own_music{
+	display:none;
+}
+
+.play_div{
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+  z-index: 1;
+  cursor: pointer;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  color: #fff;
+  width: 25px;
+  background: #45241F;
+  border-radius: 50%;
+  height: 25px;
+  
+}
+.play_div i{
+	font-size:20px;
+}
+
+
+/* audio player started */
+/*
+.audio-player {
+  text-align: center;
+  position: relative;
+}
+
+.audio-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.audio-image:hover {
+  transform: scale(1.1);
+}
+
+.play-pause-btn {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.play-pause-btn:hover {
+  background-color: #45a049;
+}
+
+.play-pause-btn:focus {
+  outline: none;
+}
+
+.track-list {
+  margin-top: 20px;
+}
+
+.track-btn {
+  font-size: 16px;
+  padding: 8px 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.track-btn:hover {
+  background-color: #0056b3;
+}
+  */
+  /*audio player ended */
 
 </style>

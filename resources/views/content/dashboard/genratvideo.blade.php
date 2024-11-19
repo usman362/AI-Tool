@@ -4,8 +4,13 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/nouislider/nouislider.css') }}" />
 <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css " rel="stylesheet">
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"> @endsection @section('vendor-script') <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> @endsection @section('page-script') <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script> @endsection @section('content') @include('layouts/customDesign') 
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}"> @endsection 
+@section('vendor-script') <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script> @endsection 
+@section('page-script') <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script> @endsection @section('content') 
+
+@include('layouts/customDesign') 
+
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
 <style>
   .sections {
@@ -178,7 +183,7 @@
         <br />
         <div class="details link_section">
           <div class="row">
-            <div class="txt col-md-12">Blog Link <button class="btn  generate">Generate</button>
+            <div class="txt col-md-12">Blog Link <button type="button" class="btn  generate">Generate</button>
             </div>
           </div>
           <div class="row ">
@@ -212,7 +217,7 @@
             <div class="col-md-12">
               <textarea class="form-control" rows="6" name="generated_script" placeholder="Paste your Blog Text here"></textarea>
               <div class="text-center">
-                <button class="btn  regenerate">Generate</button>
+                <button type="button" class="btn  regenerate">Generate</button>
               </div>
             </div>
           </div>
@@ -220,8 +225,8 @@
       <br />
       <div class="details">
         <div class="row">
-          <div class="txt col-md-12">Provided Script <button class="btn  generate">
-              <i class="menu-icon tf-icons bx bx-volume"></i>
+          <div class="txt col-md-12">Provided Script <button type="button" class="btn  generate">
+              <i class="menu-icon tf-icons bx bx-volume-full"></i>
             </button>
           </div>
         </div>
@@ -229,7 +234,7 @@
           <div class="col-md-12">
             <textarea class="form-control" rows="15" name="generated_script" placeholder="Generated script here"></textarea>
             <div class="text-center">
-              <button class="btn  regenerate">Re Generate</button>
+              <button type="button" class="btn  regenerate">Re Generate</button>
             </div>
           </div>
         </div>
@@ -285,22 +290,33 @@
         <div class="txt ">Select Images </div>
         <div class="row ">
           <div class="col-md-6">
-            <div class="bordered text-center">
+            <div class="bordered text-center images select_ai_visual">
               <i class="bx bx-bulb bg-font"></i>
               <h4>AI Visual</h4> Auto Generate video footage or images using AI
             </div>
           </div>
+
           <div class="col-md-6">
-            <div class="bordered text-center bg-brown">
-              <input type="file" accept="image/*" multiple style="display:none;" id="ownimage" />
-              <label for="ownimage" class="forfile">
+            <div class="bordered text-center images bg-brown select_own_img_btn">
+              
+              <label  class="forfile">
                 <i class="bx bx-image bg-font"></i>
                 <h4>Own Image</h4> Upload your own images take care of image size
               </label>
             </div>
             </div>
-            <div class="image-preview-main" id="imagePreviewContainer"></div>
 
+          <div id="own_image_div">
+            <div class="col-md-12 text-center custom-btn-div">
+            <input type="file" accept="image/*" multiple style="display:none;" id="ownimage" />
+                <label for="ownimage" class="custom-button upload-btn" style="min-width:90%;">
+                      Upload Image
+                      <div>PNG - JPG</div>
+                      <div>Image Size according to Video Format</div>
+                </label>
+             </div>
+            <div class="image-preview-main" id="imagePreviewContainer"></div>
+          </div>
           
         </div>
       </div>
@@ -325,7 +341,7 @@
         </div>
       </div>
       
-      <div class="details">
+      <div class="details image_style">
           <div class="txt ">
             <b>Image Style</b>
           </div>
@@ -385,15 +401,15 @@
           <div class="txt ">Select Music </div>
           <div class="row ">
             <div class="col-md-6">
-              <div class="bordered text-center">
+              <div class="bordered text-center select_ai_music">
                 <i class="bx bx-bulb bg-font"></i>
                 <h4>AI Music</h4> Auto Generate music AI depends on duration
               </div>
             </div>
             <div class="col-md-6">
-              <div class="bordered text-center bg-brown">
+              <div class="bordered text-center bg-brown select_own_music">
                 
-                <input type="file" style="display:none" id="audioInput" accept="audio/mp3" multiple />
+                <!--<input type="file" style="display:none" id="audioInput" accept="audio/mp3" multiple />-->
                 <label class="forfile" for="audioInput">
                 <i class="bx bx-image bg-font"></i>
                 <h4>Own Music</h4> Upload your own Music take care of duration
@@ -401,18 +417,49 @@
               </div>
             </div>
 
+
+
+
+
             <div class="audio-preview-container" id="audioPreviewContainer"> </div>
+
+            <div class="row" id="own_music">  
+              <div class="col-md-12  col-sm-12">
+                <select class="form-control" id="select_cat">
+                  <option value="">Select Category</option>
+                  @foreach($categories as $cat)
+                    <option value="{{$cat->_id}}">{{$cat->name}}</option>
+
+                  @endforeach
+                </select>
+              </div>
+
+
+              <div id="own_music_section" class="row"></div>
+            </div>
+
+            <div class="row" id="ai_music">  
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                  <div class="play_div audio-play">
+                      <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
+                  
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Happy</div>
                 </div>
               </div>
             </div>
+
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Energetic</div>
                 </div>
@@ -421,6 +468,10 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Playful</div>
                 </div>
@@ -429,6 +480,10 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Suspenseful</div>
                 </div>
@@ -437,6 +492,10 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Epic</div>
                 </div>
@@ -445,6 +504,10 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Serious</div>
                 </div>
@@ -453,6 +516,10 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play"><audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">Inspiring</div>
                 </div>
@@ -461,12 +528,17 @@
             <div class="col-md-3  col-sm-3">
               <div class="details ">
                 <div class="art-image">
+                <div class="play_div audio-play">
+                <audio src="{{ asset('images/sounds/sound.mp3') }}" style="display:none;" controls></audio>
+                      <i class="bx bx-play "></i>
+                  </div>
                   <img src="{{ asset('images/arts/music.jpg') }}" />
                   <div class="art-txt">None</div>
                 </div>
               </div>
             </div>
           </div>
+</div>
           
         </div>
       

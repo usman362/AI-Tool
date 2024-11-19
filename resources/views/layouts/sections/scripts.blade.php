@@ -275,7 +275,121 @@ function sliderVal(){
       });
     });
 
+    
+    
+    $(".select_own_img_btn").click(function(){
+      $("#own_image_div").show();
+      $(".image_style").hide();
+      $(".select_own_img_btn").removeClass("bg-brown")
+      $(".select_ai_visual").addClass("bg-brown")
+    })
+    $(".select_ai_visual").click(function(){
+      $("#own_image_div").hide();
+      $(".image_style").show();
+      $(".select_ai_visual").removeClass("bg-brown")
+      $(".select_own_img_btn").addClass("bg-brown")
+    })
 
+
+
+    $(".select_ai_music").click(function(){
+      $("#ai_music").show();
+      $("#own_music").hide();
+      $(".select_ai_music").removeClass("bg-brown")
+      $(".select_own_music").addClass("bg-brown")
+    })
+    $(".select_own_music").click(function(){
+        $("#ai_music").hide();
+      $("#own_music").show();
+      $(".select_own_music").removeClass("bg-brown")
+      $(".select_ai_music").addClass("bg-brown")
+    })
+
+    const basePath = '{{ asset("images/sounds/") }}/';
+
+    $("#select_cat").change(function(){
+        var id = $(this).val();
+
+        $("#own_music_section").html("");
+
+        if(id == ""){
+          
+          return;
+        }
+
+        $("#own_music_section").html("<div class='text-center'>Loading...</div>");
+
+        
+        $.ajax({
+          url: '{{ route("getsounds", ":id") }}'.replace(':id', id),
+            method: 'GET',
+            
+            success: function(response) {
+              if (response.success) {
+                let categoriesHtml = '';
+            response.data.forEach(function(category) {
+                categoriesHtml += '<div class="col-md-3  col-sm-3">';
+
+                categoriesHtml += '<div class="details "><div class="art-image"><div class="play_div audio-play">';
+                categoriesHtml += '<audio src="' + basePath + category.file + '" style="display:none;" controls=""></audio>';
+                categoriesHtml += '<i class="bx bx-play "></i></div>';
+                categoriesHtml += '<img src="{{ asset("images/arts/music.jpg") }}">';
+                categoriesHtml += '<div class="art-txt">'+ category.sound.name +'</div></div></div></div>';
+            });
+
+            $("#own_music_section").html(categoriesHtml);
+
+          }else{
+            $("#own_music_section").html("");
+          }
+        }  
+            
+        });
+
+
+        
+    })
+
+    
+    
+    $(document).on("click", ".image-preview-container", function(){
+      
+      $(".image-preview-container img").removeClass("img-active");
+      $(this).find('img').addClass('img-active');
+    })
+
+    
+    $(document).on("click", ".art-image", function(e){
+      if ($(e.target).hasClass("audio-play") || $(e.target).closest(".audio-play").length) {
+        return; // Exit if the event originates from `.audio-play`
+    }
+        $(".art-image img").removeClass("img-active");
+        $(this).find("img").addClass("img-active");
+    })
+
+   
+
+$(document).on("click", ".audio-play", function (e) {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent the event from propagating to the parent
+    // Handle the play button event here
+    const audio = $(this).find("audio")[0];
+    const icon = $(this).find("i");
+
+    if (audio.paused) {
+        // Play the audio
+        audio.play();
+        icon.removeClass("bx-play").addClass("bx-pause");
+    } else {
+        // Pause the audio
+        audio.pause();
+        icon.removeClass("bx-pause").addClass("bx-play");
+    }
+});
+
+
+    
+    
 
     const audioInput = document.getElementById('audioInput');
     const audioPreviewContainer = document.getElementById('audioPreviewContainer');
@@ -326,4 +440,80 @@ function sliderVal(){
         }
       });
     });
+
+
+
+
+
+/*
+const audio = document.getElementById('audio');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const image = document.querySelector('.audio-image');
+const audioSource = document.getElementById('audioSource');
+const uploadInput = document.getElementById('audioUpload');
+const trackList = document.querySelector('.track-list');
+
+// Function to toggle play/pause
+playPauseBtn.addEventListener('click', function() {
+  if (audio.paused) {
+    audio.play();  // Play audio
+    playPauseBtn.textContent = 'Pause';  // Change button text
+   // image.style.animation = 'rotate 4s linear infinite';  // Add image rotation on play
+  } else {
+    audio.pause();  // Pause audio
+    playPauseBtn.textContent = 'Play';  // Change button text
+   // image.style.animation = 'none';  // Stop image rotation
+  }
+});
+
+// Event listener for track selection
+trackList.addEventListener('click', function(event) {
+  if (event.target.classList.contains('track-btn')) {
+    const track = event.target.getAttribute('data-audio');
+    
+    // Set the audio source to the selected track
+    audioSource.src = track;
+    audio.load();  // Reload the audio element with the new source
+    
+    // Play the selected track
+    audio.play();
+    playPauseBtn.textContent = 'Pause';  // Change button to 'Pause'
+   // image.style.animation = 'rotate 4s linear infinite';  // Start image rotation
+  }
+});
+
+// Handle file upload and dynamically create track buttons
+uploadInput.addEventListener('change', function() {
+  const files = uploadInput.files;
+  
+  // Clear existing track list before adding new files
+  trackList.innerHTML = '';
+  
+  // Loop through the uploaded files
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    
+    // Only accept audio files
+    if (file.type.startsWith('audio/')) {
+      // Create a new track button for each file
+      const button = document.createElement('button');
+      button.classList.add('track-btn');
+      button.setAttribute("type", "button")
+      button.textContent = file.name;  // Use the file name as the button label
+      button.setAttribute('data-audio', URL.createObjectURL(file));  // Set the audio source URL
+
+      // Append the button to the track list
+      trackList.appendChild(button);
+    }
+  }
+});
+
+// Optional: Add an animation for image rotation when audio plays
+
+*/
+
+
+
+
+
 </script>

@@ -183,7 +183,7 @@
             </div>
 
     <div class="table-responsive text-nowrap">
-      @if(count($categories) > 0)
+      @if(count($sounds) > 0)
       	
       <table class="table">
         <thead>
@@ -199,7 +199,7 @@
         <tbody class="table-border-bottom-0">
 
 
-            @foreach ($categories as $av)
+            @foreach ($sounds as $av)
             	<tr>
                 	<td class="upper">
                     	
@@ -208,7 +208,7 @@
                     </td>
                     <td>
                   
-                    	<div class="text-center1"><b>{{$av->category}}</b></div>
+                    	<div class="text-center1"><b>{{$av->sound->name}}</b></div>
                         
 
                     </td>
@@ -222,7 +222,7 @@
                     <td>2:40Min</td>
                     <td>
                     	        
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#editModal{{ $av->_id }}"><i class="bx bx-edit"></i></button>
+                        <!--<button style=" class="btn" data-bs-toggle="modal" data-bs-target="#editModal{{ $av->_id }}"><i class="bx bx-edit"></i></button>-->
 
 
                       <div class="modal fade x-modal" id="editModal{{ $av->_id }}" tabindex="-1"

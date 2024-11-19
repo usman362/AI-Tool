@@ -175,7 +175,7 @@
 
 
                     </td>
-                    <td>1028</td>
+                    <td>{{count($av->soundsLists)}}</td>
                     <td>
                     	@if($av->status == 1)
                         	<label class="switch me-0">
