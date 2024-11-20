@@ -20,9 +20,7 @@ class SoundsController extends Controller
     public function index()
     {
          
-        if($_GET["test"]){
-            Sounds_list::truncate();
-        }
+        
 
         $target = request()->target;
         $categories = Sounds::where('target', $target)
