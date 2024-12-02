@@ -224,52 +224,81 @@ class AvatarsController extends Controller
 		$avatar_hours = $request['avatar_hours'];
 		$aricle_per_day = $request['aricle_per_day'];
 		$feed_per_hour = $request['feed_per_hour'];
-		$sharing_options = $request['sharing_options'];
+		
+
+		$permission = $request['permissions'];
+
+
+		$app_yek_allow = 0;
+		$app_yek_keeponline = 0;
+		if(isset($request['app_login1'])){
+			$app_yek_allow = 1;
+		}
+		$app_yek_title = $request["media_1"];
+		$app_yek_name = $request["username_1"];
+		$app_yek_pass = $request["pass_1"];
+		if(isset($request['keep_online_1'])){
+			$app_yek_keeponline = 1;
+		}
+		$app_yek_logout = $request["logout_time_1"];
+
+		$app_yahla_allow = 0;
+		$app_yahla_keeponline = 0;
+		if(isset($request['app_login2'])){
+			$app_yahla_allow = 1;
+		}
+		$app_yahla_title = $request["media_2"];
+		$app_yahla_name = $request["username_2"];
+		$app_yahla_pass = $request["pass_2"];
+		if(isset($request['keep_online_2'])){
+			$app_yahla_keeponline = 1;
+		}
+		$app_yahla_logout = $request["logout_time_2"];
+
+		$app_facebook_allow = 0;
+		$app_facebook_keeponline = 0;
+		if(isset($request['app_login3'])){
+			$app_facebook_allow = 1;
+		}
+		$app_facebook_title = $request["media_3"];
+		$app_facebook_name = $request["username_3"];
+		$app_facebook_pass = $request["pass_3"];
+		if(isset($request['keep_online_3'])){
+			$app_facebook_keeponline = 1;
+		}
+		$app_facebook_logout = $request["logout_time_3"];
+
+		$app_tik_allow = 0;
+		$app_tik_keeponline = 0;
+		if(isset($request['app_login4'])){
+			$app_tik_allow = 1;
+		}
+		$app_tik_title = $request["media_4"];
+		$app_tik_name = $request["username_4"];
+		$app_tik_pass = $request["pass_4"];
+		if(isset($request['keep_online_4'])){
+			$app_tik_keeponline = 1;
+		}
+		$app_tik_logout = $request["logout_time_4"];
+
+		$app_insta_allow = 0;
+		$app_insta_keeponline = 0;
+		if(isset($request['app_login5'])){
+			$app_insta_allow = 1;
+		}
+		$app_insta_title = $request["media_5"];
+		$app_insta_name = $request["username_5"];
+		$app_insta_pass = $request["pass_5"];
+		if(isset($request['keep_online_5'])){
+			$app_insta_keeponline = 1;
+		}
+		$app_insta_logout = $request["logout_time_5"];
+
 
 		$language = $request['select_lang'];
 		$translate_lang = $request['translate_lang'];
 
-		$text_comments = 0;
-		if(isset($request['text_comments'])){
-			$text_comments = 1; //$request['text_comments'];
-		}
-
-		$voice_comments = 0;
-		if(isset($request['voice_comments'])){
-			$voice_comments = 1; //$request['voice_comments'];
-		}
-
-		$like_post = 0;
-		if(isset($request['like_post'])){
-			$like_post = 1; //$request['like_post'];
-		}
-
-		$share_post = 0;
-		if(isset($request['share_post'])){
-			$share_post = 1; //$request['share_post'];
-		}
-
-		$text_settings = 0;
-		if(isset($request['text_settings'])){
-			$text_settings = 1; //$request['text_settings'];
-		}
-		$text_settings_1 = $request['text_settings_1'];
-		$text_settings_2 = $request['text_settings_2'];
-
-		$image_settings = 0;
-		if(isset($request['image_settings'])){
-			$image_settings = 1; //$request['image_settings'];
-		}
-		$image_settings_1 = $request['image_settings_1'];
-		$image_settings_2 = $request['image_settings_2'];
-
-		$video_settings = 0;
-		if(isset($request['video_settings'])){
-			$video_settings = 1; //$request['video_settings'];
-		}
-		$video_settings_1 = $request['video_settings_1'];
-		$video_settings_2 = $request['video_settings_2'];
-
+		
 
 		$source_link = $request['source_link'];
 
@@ -287,6 +316,8 @@ class AvatarsController extends Controller
 
 		$avid .= "_".rand(111,999);
 
+		$avcat = $request["avatar_category"];
+ 
 		$avatar = new Avatars();
 		$avatar->name = $name;
 		$avatar->av_Id = $avid;
@@ -296,23 +327,56 @@ class AvatarsController extends Controller
 		$avatar->working_hours = $avatar_hours;
 		$avatar->articles_day = $aricle_per_day;
 		$avatar->articles_hours = $feed_per_hour;
-		$avatar->sharing_option = $sharing_options;
-		$avatar->reaction_option_text = $text_comments;
+		//$avatar->sharing_option = $sharing_options;
+		//$avatar->reaction_option_text = $text_comments;
 		$avatar->image = $imgfilename;
-		$avatar->image_setting = $image_settings;
-		$avatar->image_setting_content_type = $image_settings_1;
-		$avatar->image_setting_content_type2 = $image_settings_2;
-		$avatar->reaction_option_like = $like_post;
-		$avatar->reaction_option_post = $share_post;
-		$avatar->reaction_option_voice = $voice_comments;
-		$avatar->text_setting = $text_settings;
-		$avatar->text_setting_content_type = $text_settings_1;
-		$avatar->text_setting_content_type2 = $text_settings_2;
-		$avatar->video_setting = $video_settings;
-		$avatar->video_setting_content_type = $video_settings_1;
-		$avatar->video_setting_content_type2 = $video_settings_2;
+		//$avatar->image_setting = $image_settings;
+		//$avatar->image_setting_content_type = $image_settings_1;
+		//$avatar->image_setting_content_type2 = $image_settings_2;
+		//$avatar->reaction_option_like = $like_post;
+		//$avatar->reaction_option_post = $share_post;
+		//$avatar->reaction_option_voice = $voice_comments;
 		$avatar->select_lang = $language;
 		$avatar->translate_lang = $translate_lang;
+		$avatar->category = $avcat;
+
+		$avatar->permission = $permission;
+
+		$avatar->app_yek_alow = $app_yek_allow;
+		$avatar->app_yek_title = $app_yek_title;
+		$avatar->app_yek_name = $app_yek_name;
+		$avatar->app_yek_pass = $app_yek_pass;
+		$avatar->app_yek_keeplogin = $app_yek_keeponline;
+		$avatar->app_yek_logout = $app_yek_logout;
+
+		$avatar->app_yahla_allow = $app_yahla_allow;
+		$avatar->app_yahla_title = $app_yahla_title;
+		$avatar->app_yahla_name = $app_yahla_name;
+		$avatar->app_yahla_pass = $app_yahla_pass;
+		$avatar->app_yahla_keeponline = $app_yahla_keeponline;
+		$avatar->app_yahla_logout = $app_yahla_logout;
+
+		$avatar->app_facebook_allow = $app_facebook_allow;
+		$avatar->app_facebook_title = $app_facebook_title;
+		$avatar->app_facebook_name = $app_facebook_name;
+		$avatar->app_facebook_pass = $app_facebook_pass;
+		$avatar->app_facebook_keeponline = $app_facebook_keeponline;
+		$avatar->app_facebook_logout = $app_facebook_logout;
+
+		$avatar->app_tik_allow = $app_tik_allow;
+		$avatar->app_tik_title = $app_tik_title;
+		$avatar->app_tik_name = $app_tik_name;
+		$avatar->app_tik_pass = $app_tik_pass;
+		$avatar->app_tik_keeponline = $app_tik_keeponline;
+		$avatar->app_tik_logout = $app_tik_logout;
+
+		$avatar->app_insta_allow = $app_insta_allow;
+		$avatar->app_insta_title = $app_insta_title;
+		$avatar->app_insta_name = $app_insta_name;
+		$avatar->app_insta_pass = $app_insta_pass;
+		$avatar->app_insta_keeponline = $app_insta_keeponline;
+		$avatar->app_insta_logout = $app_insta_logout;
+		
 
 
 		$avatar->save();
@@ -392,86 +456,139 @@ class AvatarsController extends Controller
 				$imgfilename = $filename;
 			}
 
-		$name = $request['avatar_name'];
-		$avatar_task = $request['avatar_task'];
-		$avatar_days = $request['avatar_days'];
-		$avatar_hours = $request['avatar_hours'];
-		$aricle_per_day = $request['aricle_per_day'];
-		$feed_per_hour = $request['feed_per_hour'];
-		$sharing_options = $request['sharing_options'];
+			$name = $request['avatar_name'];
+			$avatar_task = $request['avatar_task'];
+			$avatar_days = $request['avatar_days'];
+			$avatar_hours = $request['avatar_hours'];
+			$aricle_per_day = $request['aricle_per_day'];
+			$feed_per_hour = $request['feed_per_hour'];
+			
+	
+			$permission = $request['permissions'];
+	
+	
+			$app_yek_allow = 0;
+			$app_yek_keeponline = 0;
+			if(isset($request['app_login1'])){
+				$app_yek_allow = 1;
+			}
+			$app_yek_title = $request["media_1"];
+			$app_yek_name = $request["username_1"];
+			$app_yek_pass = $request["pass_1"];
+			if(isset($request['keep_online_1'])){
+				$app_yek_keeponline = 1;
+			}
+			$app_yek_logout = $request["logout_time_1"];
+	
+			$app_yahla_allow = 0;
+			$app_yahla_keeponline = 0;
+			if(isset($request['app_login2'])){
+				$app_yahla_allow = 1;
+			}
+			$app_yahla_title = $request["media_2"];
+			$app_yahla_name = $request["username_2"];
+			$app_yahla_pass = $request["pass_2"];
+			if(isset($request['keep_online_2'])){
+				$app_yahla_keeponline = 1;
+			}
+			$app_yahla_logout = $request["logout_time_2"];
+	
+			$app_facebook_allow = 0;
+			$app_facebook_keeponline = 0;
+			if(isset($request['app_login3'])){
+				$app_facebook_allow = 1;
+			}
+			$app_facebook_title = $request["media_3"];
+			$app_facebook_name = $request["username_3"];
+			$app_facebook_pass = $request["pass_3"];
+			if(isset($request['keep_online_3'])){
+				$app_facebook_keeponline = 1;
+			}
+			$app_facebook_logout = $request["logout_time_3"];
+	
+			$app_tik_allow = 0;
+			$app_tik_keeponline = 0;
+			if(isset($request['app_login4'])){
+				$app_tik_allow = 1;
+			}
+			$app_tik_title = $request["media_4"];
+			$app_tik_name = $request["username_4"];
+			$app_tik_pass = $request["pass_4"];
+			if(isset($request['keep_online_4'])){
+				$app_tik_keeponline = 1;
+			}
+			$app_tik_logout = $request["logout_time_4"];
+	
+			$app_insta_allow = 0;
+			$app_insta_keeponline = 0;
+			if(isset($request['app_login5'])){
+				$app_insta_allow = 1;
+			}
+			$app_insta_title = $request["media_5"];
+			$app_insta_name = $request["username_5"];
+			$app_insta_pass = $request["pass_5"];
+			if(isset($request['keep_online_5'])){
+				$app_insta_keeponline = 1;
+			}
+			$app_insta_logout = $request["logout_time_5"];
+	
+	
+			$language = $request['select_lang'];
+			$translate_lang = $request['translate_lang'];
 
-		$language = $request['select_lang'];
-		$translate_lang = $request['translate_lang'];
-
-		$text_comments = 0;
-		if(isset($request['text_comments'])){
-			$text_comments = 1; //$request['text_comments'];
-		}
-
-		$voice_comments = 0;
-		if(isset($request['voice_comments'])){
-			$voice_comments = 1; //$request['voice_comments'];
-		}
-
-		$like_post = 0;
-		if(isset($request['like_post'])){
-			$like_post = 1; //$request['like_post'];
-		}
-
-		$share_post = 0;
-		if(isset($request['share_post'])){
-			$share_post = 1; //$request['share_post'];
-		}
-
-		$text_settings = 0;
-		if(isset($request['text_settings'])){
-			$text_settings = 1; //$request['text_settings'];
-		}
-		$text_settings_1 = $request['text_settings_1'];
-		$text_settings_2 = $request['text_settings_2'];
-
-		$image_settings = 0;
-		if(isset($request['image_settings'])){
-			$image_settings = 1; //$request['image_settings'];
-		}
-		$image_settings_1 = $request['image_settings_1'];
-		$image_settings_2 = $request['image_settings_2'];
-
-		$video_settings = 0;
-		if(isset($request['video_settings'])){
-			$video_settings = 1; //$request['video_settings'];
-		}
-		$video_settings_1 = $request['video_settings_1'];
-		$video_settings_2 = $request['video_settings_2'];
-
+			$avcat = $request["avatar_category"];
 
 		$source_link = $request['source_link'];
 
 		$avatar->name = $name;
+		$avatar->status = 1;
 		$avatar->task = $avatar_task;
 		$avatar->working_days = $avatar_days;
 		$avatar->working_hours = $avatar_hours;
 		$avatar->articles_day = $aricle_per_day;
 		$avatar->articles_hours = $feed_per_hour;
-		$avatar->sharing_option = $sharing_options;
-		$avatar->reaction_option_text = $text_comments;
 		$avatar->image = $imgfilename;
-		$avatar->image_setting = $image_settings;
-		$avatar->image_setting_content_type = $image_settings_1;
-		$avatar->image_setting_content_type2 = $image_settings_2;
-		$avatar->reaction_option_like = $like_post;
-		$avatar->reaction_option_post = $share_post;
-		$avatar->reaction_option_voice = $voice_comments;
-		$avatar->text_setting = $text_settings;
-		$avatar->text_setting_content_type = $text_settings_1;
-		$avatar->text_setting_content_type2 = $text_settings_2;
-		$avatar->video_setting = $video_settings;
-		$avatar->video_setting_content_type = $video_settings_1;
-		$avatar->video_setting_content_type2 = $video_settings_2;
-
 		$avatar->select_lang = $language;
 		$avatar->translate_lang = $translate_lang;
+		$avatar->category = $avcat;
 
+		$avatar->permission = $permission;
+
+		$avatar->app_yek_alow = $app_yek_allow;
+		$avatar->app_yek_title = $app_yek_title;
+		$avatar->app_yek_name = $app_yek_name;
+		$avatar->app_yek_pass = $app_yek_pass;
+		$avatar->app_yek_keeplogin = $app_yek_keeponline;
+		$avatar->app_yek_logout = $app_yek_logout;
+
+		$avatar->app_yahla_allow = $app_yahla_allow;
+		$avatar->app_yahla_title = $app_yahla_title;
+		$avatar->app_yahla_name = $app_yahla_name;
+		$avatar->app_yahla_pass = $app_yahla_pass;
+		$avatar->app_yahla_keeponline = $app_yahla_keeponline;
+		$avatar->app_yahla_logout = $app_yahla_logout;
+
+		$avatar->app_facebook_allow = $app_facebook_allow;
+		$avatar->app_facebook_title = $app_facebook_title;
+		$avatar->app_facebook_name = $app_facebook_name;
+		$avatar->app_facebook_pass = $app_facebook_pass;
+		$avatar->app_facebook_keeponline = $app_facebook_keeponline;
+		$avatar->app_facebook_logout = $app_facebook_logout;
+
+		$avatar->app_tik_allow = $app_tik_allow;
+		$avatar->app_tik_title = $app_tik_title;
+		$avatar->app_tik_name = $app_tik_name;
+		$avatar->app_tik_pass = $app_tik_pass;
+		$avatar->app_tik_keeponline = $app_tik_keeponline;
+		$avatar->app_tik_logout = $app_tik_logout;
+
+		$avatar->app_insta_allow = $app_insta_allow;
+		$avatar->app_insta_title = $app_insta_title;
+		$avatar->app_insta_name = $app_insta_name;
+		$avatar->app_insta_pass = $app_insta_pass;
+		$avatar->app_insta_keeponline = $app_insta_keeponline;
+		$avatar->app_insta_logout = $app_insta_logout;
+		
 		$avatar->update();
 
 		$avid = $avatar->id;

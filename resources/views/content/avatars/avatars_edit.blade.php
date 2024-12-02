@@ -162,7 +162,7 @@
                     <p>Edit Avatar</p>
                     <hr />
                     
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     
                     	<div class="" style="text-align:center;;margin-top:30px;">
                         	<label for="uploadimage">
@@ -196,8 +196,57 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="details">
+                            <b>Language Setting</b>
+                                 
+                            <div class="txt">Translate Settings</div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <select class="form-control" name="select_lang">
+                                        <option value="">Select Language</option>
+
+                                        <option @if($avatar->select_lang == "English") selected @endif value="English">English</option>
+                                        <option @if($avatar->select_lang == "Kurdi") selected @endif value="Kurdi">Kurdi</option>
+                                        <option @if($avatar->select_lang == "Deutsch") selected @endif value="Deutsch">Deutsch</option>
+                                        <option @if($avatar->select_lang == "Arabic") selected @endif value="Arabic">Arabic</option>
+
+                                        
+
+                                    </select>
+                                	
+                                </div>
+                                <div class="col-md-6">
+                                <select class="form-control" name="translate_lang">
+                                        <option value="">Translate To</option>
+                                        
+                                        
+                                        <option @if($avatar->translate_lang == "English") selected @endif value="English">English</option>
+                                        <option @if($avatar->translate_lang == "Kurdi") selected @endif value="Kurdi">Kurdi</option>
+                                        <option @if($avatar->translate_lang == "Deutsch") selected @endif value="Deutsch">Deutsch</option>
+                                        <option @if($avatar->translate_lang == "Arabic") selected @endif value="Arabic">Arabic</option>
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details">
+                            <h4><b>Select Blog Category</b></h4>
+                            <div class="txt">Which category will be manage by this Avatar</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select class="form-control" name="avatar_category">
+                                    	<option value="">Select Blog Category</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
                         
-                        <div class="details"
+                        <div class="details">
                             <h4><b>Avatar Activity</b></h4>
                             <div class="txt">Working Time</div>
                             <div class="row">
@@ -211,18 +260,23 @@
                                         <option @if($avatar->working_days == "Monday") selected @endif value="Monday">Monday</option>
                                         <option @if($avatar->working_days == "Tuesday") selected @endif value="Saturday">Tuesday</option>
                                         <option @if($avatar->working_days == "Wednesday") selected @endif value="Wednesday">Wednesday</option>
-                                        <option @if($avatar->working_days == "Saturday") selected @endif value="Thursday">Thursday</option>
+                                        <option @if($avatar->working_days == "Thursday") selected @endif value="Thursday">Thursday</option>
                                         <option @if($avatar->working_days == "Friday") selected @endif value="Saturday" value="Friday">Friday</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control" name="avatar_hours" required>
                                     	<option value="">Working Hours</option>
-                                        <option @if($avatar->working_hours == "5") selected @endif value="5">00:00 - 05:00</option>
-                                        <option @if($avatar->working_hours == "10") selected @endif value="10">05:00 - 10:00</option>
-                                        <option @if($avatar->working_hours == "15") selected @endif value="15">10:00 - 15:00</option>
-                                        <option @if($avatar->working_hours == "20") selected @endif value="20">15:00 - 20:00</option>
-                                        <option @if($avatar->working_hours == "24") selected @endif value="24">20:00 - 00:00</option>
+
+                                        <option  value="">Working Hours</option>
+                                        <option @if($avatar->working_hours == "4") selected @endif value="4">00:01 - 04:00</option>
+                                        <option @if($avatar->working_hours == "8") selected @endif value="8">04:01 - 08:00</option>
+                                        <option @if($avatar->working_hours == "12") selected @endif value="12">08:01 - 12:00</option>
+                                        <option @if($avatar->working_hours == "16") selected @endif value="16">12:01 - 16:00</option>
+                                        <option @if($avatar->working_hours == "20") selected @endif value="20">16:01 - 20:00</option>
+                                        <option @if($avatar->working_hours == "24") selected @endif value="24">20:01 - 00:00</option>
+
+
                                     </select>
                                 </div>
                             </div>
@@ -255,174 +309,37 @@
                             </div>
                         </div>
                         
-                        
-                        <div class="details">
-                            <h4><b>Sharing Options</b></h4>
-                            <div class="txt">Who can see the Post</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                    	<label for="alluser">All Users</label>
-                                    	<input @if($avatar->sharing_option == "0") checked @endif type="radio" id="alluser"  name="sharing_options" value="0"  />
-                                    </div>
-                                	
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="bordered">
-                                    	<label for="educated_users">Educated Users</label>
-                                    	<input @if($avatar->sharing_option == "1") checked @endif  type="radio" id="educated_users" name="sharing_options" value="1" checked="checked"  />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                    	<label for="cul_users">Cultivated Users</label>
-                                    	<input @if($avatar->sharing_option == "2") checked @endif  type="radio" id="cul_users" name="sharing_options" value="2"  />
-                                    </div>
-                                	
-                                </div>
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                    	<label for="ac_users">Academic Users</label>
-                                    	<input @if($avatar->sharing_option == "3") checked @endif  type="radio" id="ac_users" name="sharing_options" value="3"  />
-                                    </div>
-                                	
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                    
-                    
-                    <div class="details">
-                            <h4><b>Reaction Options</b></h4>
-                            <div class="txt">User reactions for Post</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                    	<div  class="form-check form-switch mb-2">Text Comments
-                                          <input @if($avatar->reaction_option_text == "1") checked @endif   class="form-check-input closetogglebtn" checked="checked" name="text_comments" type="checkbox" >
-                                        </div>
-                                    </div>
-                                	
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="bordered">
-                                    	<div  class="form-check form-switch mb-2">Voice Comments
-                                          <input @if($avatar->reaction_option_voice == "1") checked @endif class="form-check-input closetogglebtn" name="voice_comments" type="checkbox" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                    	<div  class="form-check form-switch mb-2">Share Post
-                                          <input @if($avatar->reaction_option_post == "1") checked @endif class="form-check-input closetogglebtn" name="share_post" type="checkbox" >
-                                        </div>
-                                    </div>
-                                	
-                                </div>
-                                <div class="col-md-6 ">
-                                	<div class="bordered">
-                                        <div  class="form-check form-switch mb-2">Like Post
-                                          <input @if($avatar->reaction_option_like == "1") checked @endif class="form-check-input closetogglebtn" name="like_post" type="checkbox" >
-                                        </div>
-                                    </div>
-                                	
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+</div>
                     
                     <!-- col6 start -->
-                    <div class="col-md-6">
-                        <div class="details">
-                            <h4><b>Text Setting</b>
-                                 <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input @if($avatar->text_setting == "1") checked @endif class="form-check-input closetogglebtn" name="text_settings" type="checkbox" >
-                                </div>
-                            </h4>
-                            <div class="txt">Article Settings</div>
+                    <div class="col-md-4">
+
+                    @php
+                        $yesel = '';
+                        $nosel = 'checked="checked"';
+                        if($avatar->permission == "1"){
+                            $nosel = '';
+                            $yesel = 'checked="checked"';
+                        }
+                    @endphp
+                    <div class="details">
+                            <h4><b>Permissions</b></h4>
+                            <div class="txt">Convert blog to Video</div>
                             <div class="row">
                                 <div class="col-md-6 ">
-                                	<input class="form-control" value="{{$avatar->text_setting_content_type}}" name="text_settings_1" placeholder="Content Type" />
-                                </div>
-                                <div class="col-md-6">
-                                    <input class="form-control" value="{{$avatar->text_setting_content_type2}}" name="text_settings_2" placeholder="Content Type" />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="details">
-                            <h4><b>Image Setting</b>
-                                 <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input @if($avatar->image_setting == "1") checked @endif  class="form-check-input closetogglebtn" name="image_settings" type="checkbox" >
-                                </div>
-                            </h4>
-                            <div class="txt">Article Settings</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                	<input class="form-control" value="{{$avatar->image_setting_content_type}}" name="image_settings_1" placeholder="Content Type" />
-                                </div>
-                                <div class="col-md-6">
-                                    <input class="form-control" value="{{$avatar->image_setting_content_type2}}" name="image_settings_2" placeholder="Content Type" />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="details">
-                            <h4><b>Video Setting</b>
-                                 <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input @if($avatar->video_setting == "1") checked @endif class="form-check-input closetogglebtn" name="video_settings" type="checkbox" >
-                                </div>
-                            </h4>
-                            <div class="txt">Article Settings</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                	<input class="form-control" value="{{$avatar->video_setting_content_type}}" name="video_settings_1" placeholder="Content Type" />
-                                </div>
-                                <div class="col-md-6">
-                                    <input class="form-control" value="{{$avatar->video_setting_content_type2}}" name="video_settings_2" placeholder="Content Type" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="details">
-                            <h4><b>Language Setting</b>
-                                 <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
-                                </div>
-                            </h4>
-                            <div class="txt">Translate Settings</div>
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <select class="form-control" name="select_lang">
-                                        <option value="">Select Language</option>
-
-                                        <option @if($avatar->select_lang == "English") selected @endif value="English">English</option>
-                                        <option @if($avatar->select_lang == "Kurdi") selected @endif value="Kurdi">Kurdi</option>
-                                        <option @if($avatar->select_lang == "Deutsch") selected @endif value="Deutsch">Deutsch</option>
-                                        <option @if($avatar->select_lang == "Arabic") selected @endif value="Arabic">Arabic</option>
-
-                                        
-
-                                    </select>
+                                	<div class="bordered">
+                                    	<label for="yes_convert">Yes Convert</label>
+                                    	<input type="radio" id="yes_convert" {{$yesel}}  name="permissions" value="0"  />
+                                    </div>
                                 	
                                 </div>
                                 <div class="col-md-6">
-                                <select class="form-control" name="translate_lang">
-                                        <option value="">Translate To</option>
-                                        
-                                        
-                                        <option @if($avatar->translate_lang == "English") selected @endif value="English">English</option>
-                                        <option @if($avatar->translate_lang == "Kurdi") selected @endif value="Kurdi">Kurdi</option>
-                                        <option @if($avatar->translate_lang == "Deutsch") selected @endif value="Deutsch">Deutsch</option>
-                                        <option @if($avatar->translate_lang == "Arabic") selected @endif value="Arabic">Arabic</option>
-
-
-
-                                    </select>
+                                    <div class="bordered">
+                                    	<label for="no_convert">Do Not Convert </label>
+                                    	<input type="radio" id="no_convert" {{$nosel}} name="permissions" value="1"  />
+                                    </div>
                                 </div>
+                               
                             </div>
                         </div>
                         
@@ -490,16 +407,264 @@
                             
                             @endif
                             
-                            
-                            
-                            
-                            
-                            
+                        </div>
+
+                        <div class="details">
+                            <h4><b>Social Media Login</b>
+                        
+                            <div  class="form-check form-switch mb-2 righ-check-option">
+                            	 	<input class="form-check-input closetogglebtn" name="app_login1" type="checkbox" {{ $avatar->app_yek_alow == 1 ? 'checked' : '' }} >
+                                </div>
+                            </h4>
+                            <div class="txt">Yekbun App</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" placeholder="Social Media Title" value="{{$avatar->app_yek_title}}" name="media_1" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" name="username_1" value="{{$avatar->app_yek_name}}" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" class="form-control" value="{{$avatar->app_yek_pass}}"  name="pass_1" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline1">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline1" class="form-check-input closetogglebtn" {{ $avatar->app_yek_keeplogin == 1 ? 'checked' : '' }} name="keep_online_1" type="checkbox" >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_1">
+                                        	<option {{ $avatar->app_yek_logout == '15' ? 'selected' : '' }} value="15">15 min</option>
+                                            <option {{ $avatar->app_yek_logout == '30' ? 'selected' : '' }} value="30">30 min</option>
+                                            <option {{ $avatar->app_yek_logout == '45' ? 'selected' : '' }} value="45">45 min</option>
+                                            <option {{ $avatar->app_yek_logout == '60' ? 'selected' : '' }} value="60">60 min</option>
+                                            <option {{ $avatar->app_yek_logout == '90' ? 'selected' : '' }} value="90">90 min</option>
+                                            <option {{ $avatar->app_yek_logout == '120' ? 'selected' : '' }} value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
                         </div>
                         
                         
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login2" type="checkbox" {{ $avatar->app_yahla_allow == 1 ? 'checked' : '' }} >
+                            </div>
+                        </h4>
+                            <div class="txt">Yahala App</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" value="{{$avatar->app_yahla_title}}"  placeholder="Social Media Title" name="media_2" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" value="{{$avatar->app_yahla_name}}" name="username_2" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" value="{{$avatar->app_yahla_pass}}"  class="form-control" name="pass_2" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline2">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;" >
+                                     		
+                                        	<input id="keeponline2" class="form-check-input closetogglebtn" name="keep_online_2" type="checkbox" {{ $avatar->app_yahla_keeponline == 1 ? 'checked' : '' }} >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_2">
+                                        	<option {{ $avatar->app_yahla_logout == '15' ? 'selected' : '' }}  value="15">15 min</option>
+                                            <option {{ $avatar->app_yahla_logout == '30' ? 'selected' : '' }}  value="30">30 min</option>
+                                            <option {{ $avatar->app_yahla_logout == '45' ? 'selected' : '' }}  value="45">45 min</option>
+                                            <option {{ $avatar->app_yahla_logout == '60' ? 'selected' : '' }}  value="60">60 min</option>
+                                            <option {{ $avatar->app_yahla_logout == '90' ? 'selected' : '' }}  value="90">90 min</option>
+                                            <option {{ $avatar->app_yahla_logout == '120' ? 'selected' : '' }}  value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        
+</div>
                     </div>
                     <!-- col6 ends -->
+
+                    <div class="col-md-4">
+
+                    <div class="details">
+                         <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login3" type="checkbox" {{ $avatar->app_facebook_allow == 1 ? 'checked' : '' }} >
+                            </div>
+                        </h4>
+                            <div class="txt">Facebook</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" value="{{$avatar->app_facebook_title}}" placeholder="Social Media Title" name="media_3" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" value="{{$avatar->app_facebook_name}}" name="username_3" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" value="{{$avatar->app_facebook_pass}}" class="form-control" name="pass_3" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline3">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline3" class="form-check-input closetogglebtn" name="keep_online_3" type="checkbox" {{ $avatar->app_facebook_keeponline == 1 ? 'checked' : '' }} >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_3">
+                                            <option {{ $avatar->app_facebook_logout == '15' ? 'selected' : '' }}  value="15">15 min</option>
+                                            <option {{ $avatar->app_facebook_logout == '30' ? 'selected' : '' }}  value="30">30 min</option>
+                                            <option {{ $avatar->app_facebook_logout == '45' ? 'selected' : '' }}  value="45">45 min</option>
+                                            <option {{ $avatar->app_facebook_logout == '60' ? 'selected' : '' }}  value="60">60 min</option>
+                                            <option {{ $avatar->app_facebook_logout == '90' ? 'selected' : '' }}  value="90">90 min</option>
+                                            <option {{ $avatar->app_facebook_logout == '120' ? 'selected' : '' }}  value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login4" type="checkbox" {{ $avatar->app_tik_allow == 1 ? 'checked' : '' }} >
+                            </div>
+                        </h4>
+                            <div class="txt">Tiktok</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" value="{{$avatar->app_tik_title}}" placeholder="Social Media Title" name="media_4" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" value="{{$avatar->app_tik_name}}" name="username_4" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" value="{{$avatar->app_tik_pass}}" class="form-control" name="pass_4" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline2">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline2" class="form-check-input closetogglebtn" name="keep_online_4" type="checkbox" {{ $avatar->app_tik_keeponline == 1 ? 'checked' : '' }} >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_4">
+                                            <option {{ $avatar->app_tik_logout == '15' ? 'selected' : '' }}  value="15">15 min</option>
+                                            <option {{ $avatar->app_tik_logout == '30' ? 'selected' : '' }}  value="30">30 min</option>
+                                            <option {{ $avatar->app_tik_logout == '45' ? 'selected' : '' }}  value="45">45 min</option>
+                                            <option {{ $avatar->app_tik_logout == '60' ? 'selected' : '' }}  value="60">60 min</option>
+                                            <option {{ $avatar->app_tik_logout == '90' ? 'selected' : '' }}  value="90">90 min</option>
+                                            <option {{ $avatar->app_tik_logout == '120' ? 'selected' : '' }}  value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login5" type="checkbox" {{ $avatar->app_insta_allow == 1 ? 'checked' : '' }} >
+                            </div>
+                        </h4>
+                            <div class="txt">Instagram</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control"  value="{{$avatar->app_insta_title}}" placeholder="Social Media Title" name="media_5" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" value="{{$avatar->app_insta_name}}" name="username_5" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" value="{{$avatar->app_insta_pass}}" class="form-control" name="pass_5" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline5">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline5" class="form-check-input closetogglebtn" name="keep_online_5" type="checkbox" {{ $avatar->app_insta_keeponline == 1 ? 'checked' : '' }} >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_5">
+                                            <option {{ $avatar->app_insta_logout == '15' ? 'selected' : '' }}  value="15">15 min</option>
+                                            <option {{ $avatar->app_insta_logout == '30' ? 'selected' : '' }}  value="30">30 min</option>
+                                            <option {{ $avatar->app_insta_logout == '45' ? 'selected' : '' }}  value="45">45 min</option>
+                                            <option {{ $avatar->app_insta_logout == '60' ? 'selected' : '' }}  value="60">60 min</option>
+                                            <option {{ $avatar->app_insta_logout == '90' ? 'selected' : '' }}  value="90">90 min</option>
+                                            <option {{ $avatar->app_insta_logout == '120' ? 'selected' : '' }}  value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                    </div>
                    
                     
                    <!-- row -->

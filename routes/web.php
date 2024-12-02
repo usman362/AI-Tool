@@ -241,6 +241,8 @@ Route::get('/admin/2FA', [AdminProfileController::class, 'enable'])->name('admin
 
 Route::get('/welcome', [AdminProfileController::class, 'welcome'])->name('welcome');
 
+
+
 Route::get('/login', [LoginController::class, 'index'])
     ->name('admin.login')
     ->middleware('guest');
@@ -273,6 +275,7 @@ Route::middleware(['admin.auth', '2fa'])->group(function () use ($controller_pat
 
     Route::get('/genratvideo', [AnalyticsController::class, 'genratvideo'])->name('adminpanel');
 
+    Route::get('/creatvideo', [AnalyticsController::class, 'creatvideo'])->name('creatvideo');
     
     // analystics
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('dashboard-analytics');

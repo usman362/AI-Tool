@@ -35,6 +35,11 @@ class AnalyticsController extends Controller
     return view('content.dashboard.genratvideo', compact('categories'));
   }
 
+  public function creatvideo(){
+    
+    return view('content.dashboard.creatvideo');
+  }
+
 
   public function download(){
    

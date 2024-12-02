@@ -224,14 +224,14 @@
                             </div>
                         </div>
 
-
+ 
                         
                         <div class="details">
                             <h4><b>Select Blog Category</b></h4>
                             <div class="txt">Which category will be manage by this Avatar</div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select class="form-control" name="avatar_days" required>
+                                    <select class="form-control" name="avatar_category">
                                     	<option value="">Select Blog Category</option>
                                     </select>
                                 </div>
@@ -389,7 +389,7 @@
                             <h4><b>Social Media Login</b>
                         
                             <div  class="form-check form-switch mb-2 righ-check-option">
-                            	 	<input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                            	 	<input class="form-check-input closetogglebtn" name="app_login1" type="checkbox" >
                                 </div>
                             </h4>
                             <div class="txt">Yekbun App</div>
@@ -440,7 +440,7 @@
                         <h4><b>Social Media Login</b>
                         
                         <div  class="form-check form-switch mb-2 righ-check-option">
-                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                                 <input class="form-check-input closetogglebtn" name="app_login2" type="checkbox" >
                             </div>
                         </h4>
                             <div class="txt">Yahala App</div>
@@ -504,110 +504,10 @@
                          <h4><b>Social Media Login</b>
                         
                         <div  class="form-check form-switch mb-2 righ-check-option">
-                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
+                                 <input class="form-check-input closetogglebtn" name="app_login3" type="checkbox" >
                             </div>
                         </h4>
                             <div class="txt">Facebook</div>
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                	
-                                    	
-                                    	<input class="form-control" placeholder="Social Media Title" name="media_1" />
-                                   
-                                </div>
-                                <div class="col-md-6 m-t-10">
-                                    <input class="form-control" name="username_1" placeholder="Username" />
-                                </div>
-                                <div class="col-md-6 m-t-10">
-                                    <input type="password" class="form-control" name="pass_1" placeholder="Password" />
-                                </div>
-                                
-                                <div class="col-md-6">
-                                	
-                                    <div class="bordered">
-                                    	<label for="keeponline1">Keep Online</label>
-                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
-                                     		
-                                        	<input id="keeponline1" class="form-check-input closetogglebtn" name="keep_online_1" type="checkbox" >
-                                    	</div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="bordered" style="font-size:12px;">
-                                    	Logout after
-                                        <select name="logout_time_1">
-                                        	<option value="15">15 min</option>
-                                            <option value="30">30 min</option>
-                                            <option value="45">45 min</option>
-                                            <option value="60">60 min</option>
-                                            <option value="90">90 min</option>
-                                            <option value="120">120 min</option>
-                                        </select>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="details">
-                        <h4><b>Social Media Login</b>
-                        
-                        <div  class="form-check form-switch mb-2 righ-check-option">
-                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
-                            </div>
-                        </h4>
-                            <div class="txt">Tiktok</div>
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                	
-                                    	
-                                    	<input class="form-control" placeholder="Social Media Title" name="media_2" />
-                                   
-                                </div>
-                                <div class="col-md-6 m-t-10">
-                                    <input class="form-control" name="username_2" placeholder="Username" />
-                                </div>
-                                <div class="col-md-6 m-t-10">
-                                    <input type="password" class="form-control" name="pass_2" placeholder="Password" />
-                                </div>
-                                
-                                <div class="col-md-6">
-                                	
-                                    <div class="bordered">
-                                    	<label for="keeponline2">Keep Online</label>
-                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
-                                     		
-                                        	<input id="keeponline2" class="form-check-input closetogglebtn" name="keep_online_2" type="checkbox" >
-                                    	</div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="bordered" style="font-size:12px;">
-                                    	Logout after
-                                        <select name="logout_time_2">
-                                        	<option value="15">15 min</option>
-                                            <option value="30">30 min</option>
-                                            <option value="45">45 min</option>
-                                            <option value="60">60 min</option>
-                                            <option value="90">90 min</option>
-                                            <option value="120">120 min</option>
-                                        </select>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                        <div class="details">
-                        <h4><b>Social Media Login</b>
-                        
-                        <div  class="form-check form-switch mb-2 righ-check-option">
-                                 <input class="form-check-input closetogglebtn" name="languages_settings" type="checkbox" >
-                            </div>
-                        </h4>
-                            <div class="txt">Instagram</div>
                             <div class="row">
                                 <div class="col-md-12 ">
                                 	
@@ -637,6 +537,106 @@
                                     <div class="bordered" style="font-size:12px;">
                                     	Logout after
                                         <select name="logout_time_3">
+                                        	<option value="15">15 min</option>
+                                            <option value="30">30 min</option>
+                                            <option value="45">45 min</option>
+                                            <option value="60">60 min</option>
+                                            <option value="90">90 min</option>
+                                            <option value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login4" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Tiktok</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" placeholder="Social Media Title" name="media_4" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" name="username_4" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" class="form-control" name="pass_4" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline2">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline2" class="form-check-input closetogglebtn" name="keep_online_4" type="checkbox" >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_4">
+                                        	<option value="15">15 min</option>
+                                            <option value="30">30 min</option>
+                                            <option value="45">45 min</option>
+                                            <option value="60">60 min</option>
+                                            <option value="90">90 min</option>
+                                            <option value="120">120 min</option>
+                                        </select>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="details">
+                        <h4><b>Social Media Login</b>
+                        
+                        <div  class="form-check form-switch mb-2 righ-check-option">
+                                 <input class="form-check-input closetogglebtn" name="app_login5" type="checkbox" >
+                            </div>
+                        </h4>
+                            <div class="txt">Instagram</div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                	
+                                    	
+                                    	<input class="form-control" placeholder="Social Media Title" name="media_5" />
+                                   
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input class="form-control" name="username_5" placeholder="Username" />
+                                </div>
+                                <div class="col-md-6 m-t-10">
+                                    <input type="password" class="form-control" name="pass_5" placeholder="Password" />
+                                </div>
+                                
+                                <div class="col-md-6">
+                                	
+                                    <div class="bordered">
+                                    	<label for="keeponline5">Keep Online</label>
+                                     	<div  class="form-check form-switch mb-2 righ-check-option " style="width:50px;">
+                                     		
+                                        	<input id="keeponline5" class="form-check-input closetogglebtn" name="keep_online_5" type="checkbox" >
+                                    	</div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bordered" style="font-size:12px;">
+                                    	Logout after
+                                        <select name="logout_time_5">
                                         	<option value="15">15 min</option>
                                             <option value="30">30 min</option>
                                             <option value="45">45 min</option>
